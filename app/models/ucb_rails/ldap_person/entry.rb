@@ -40,7 +40,7 @@ module UcbRails::LdapPerson
         new(
           :uid => ldap_entry.uid,
           :calnet_id => ldap_entry.berkeleyedukerberosprincipalstring.first,
-          :employee_id => ldap_entry.employeenumber.first,
+          :employee_id => ldap_entry.employeenumber,
           :first_name => ldap_entry.givenname.first,
           :last_name => ldap_entry.sn.first,
           :email => ldap_entry.mail.first,
