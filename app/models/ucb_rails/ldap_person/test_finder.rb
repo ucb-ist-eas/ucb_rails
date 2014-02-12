@@ -27,14 +27,14 @@ module UcbRails::LdapPerson
 
     def self.entries
       [
-        new_entry("1", 'art', "Art", "Andrews", "art@example.com", "999-999-0001", "Dept 1"),
-        new_entry("2", 'beth', "Beth", "Brown", "beth@example.com", "999-999-0002", "Dept 2"),
-        new_entry("61065", 'runner', "Steven", "Hansen", "runner@berkeley.edu", "999-999-9998", "EAS"),
-        new_entry("191501", 'stevedowney', "Steve", "Downey", "sldowney@berkeley.edu", "999-999-9999", "EAS"),
+        new_entry("1", 'art', "Art", "Andrews", "art@example.com", "999-999-0001", "Dept 1", "011"),
+        new_entry("2", 'beth', "Beth", "Brown", "beth@example.com", "999-999-0002", "Dept 2", "012"),
+        new_entry("61065", 'runner', "Steven", "Hansen", "runner@berkeley.edu", "999-999-9998", "EAS", "0161065"),
+        new_entry("191501", 'stevedowney', "Steve", "Downey", "sldowney@berkeley.edu", "999-999-9999", "EAS", "01191501"),
       ]
     end
 
-    def self.new_entry(uid, calnet_id, fn, ln, email, phone, depts)
+    def self.new_entry(uid, calnet_id, fn, ln, email, phone, depts, employee_id = nil)
       ::UcbRails::LdapPerson::Entry.new(
         :uid => uid,
         :calnet_id => calnet_id,
@@ -42,9 +42,10 @@ module UcbRails::LdapPerson
         :last_name => ln,
         :email => email,
         :phone => phone,
-        :departments => depts
+        :departments => depts,
+        :employee_id => employee_id
       )
     end
-    
+
   end
 end
