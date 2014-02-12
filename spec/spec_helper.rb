@@ -5,7 +5,7 @@ Spork.prefork do
   ENV["RAILS_ENV"] ||= 'test'
 
   require "rails/application"
-  require File.expand_path("../dummy/config/environment", __FILE__)
+  require File.expand_path("../../dummy/config/environment", __FILE__)
   require 'rspec/rails'
   require 'shoulda/matchers/integrations/rspec'
   require 'rspec/autorun'
@@ -14,11 +14,11 @@ Spork.prefork do
   require 'capybara/webkit'# if ENV['WEBKIT']
 
   Capybara.javascript_driver = :webkit
-  
+
 
   require 'coveralls'
   Coveralls.wear!
-  
+
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
 
   RSpec.configure do |config|
@@ -29,16 +29,16 @@ Spork.prefork do
     config.filter_run focus: true
     config.order = "random"
     config.run_all_when_everything_filtered = true
-    
+
     config.before(:each) do
       DatabaseCleaner.strategy = :truncation #example.metadata[:js] ? :truncation : :transaction
       DatabaseCleaner.start
     end
-    
+
     config.after(:each) do
       DatabaseCleaner.clean
     end
-    
+
   end
 end
 
