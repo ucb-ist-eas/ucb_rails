@@ -31,6 +31,10 @@ module UcbRails::LdapPerson
       end
     end
 
+    def find_by_affiliate_id(affiliate_id)
+      find_by_attributes("berkeleyEduAffID" => affiliate_id)
+    end
+    
     def find_by_attributes(attributes)
       attributes.each { |k, v| attributes.delete(k) if v.blank?  }
       UCB::LDAP::Person.

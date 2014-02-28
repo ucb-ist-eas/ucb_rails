@@ -14,6 +14,10 @@ module UcbRails::LdapPerson
       find_by_attributes(:first_name => first_name, :last_name => last_name)
     end
 
+    def find_by_affiliate_id(affiliate_id)
+      find_by_attributes("affiliate_id" => affiliate_id)
+    end
+    
     def find_by_attributes(attributes)
       self.class.entries.select { |entry| entry_matches_attributes(entry, attributes) }
     end
@@ -21,7 +25,7 @@ module UcbRails::LdapPerson
     def entry_matches_attributes(entry, attributes)
       attributes.keys.all? do |key|
         value = attributes[key].to_s.downcase
-        value.blank? || entry.send(key).downcase.include?(value)
+        value.blank? || (entry.respond_to?(key) && entry.send(key).to_s.downcase.include?(value))
       end
     end
 
@@ -34,7 +38,7 @@ module UcbRails::LdapPerson
       ]
     end
 
-    def self.new_entry(uid, calnet_id, fn, ln, email, phone, depts, employee_id = nil)
+    def self.new_entry(uid, calnet_id, fn, ln, email, phone, depts, employee_id = nil, affiliate_id = nil)
       ::UcbRails::LdapPerson::Entry.new(
         :uid => uid,
         :calnet_id => calnet_id,
@@ -43,7 +47,8 @@ module UcbRails::LdapPerson
         :email => email,
         :phone => phone,
         :departments => depts,
-        :employee_id => employee_id
+        :employee_id => employee_id,
+        :affiliate_id => affiliate_id
       )
     end
 

@@ -16,7 +16,8 @@ module UcbRails::LdapPerson
     attribute :phone
     attribute :departments
     attribute :affiliations
-
+    attribute :affiliate_id
+    
     def full_name
       "#{first_name()} #{last_name()}"
     end
@@ -46,7 +47,8 @@ module UcbRails::LdapPerson
           :email => ldap_entry.mail.first,
           :phone => ldap_entry.phone,
           :departments => ldap_entry.berkeleyeduunithrdeptname,
-          :affiliations => ldap_entry.berkeleyeduaffiliations
+          :affiliations => ldap_entry.berkeleyeduaffiliations,
+          :affiliate_id => ldap_entry.berkeleyeduaffid
         )
       end
 
