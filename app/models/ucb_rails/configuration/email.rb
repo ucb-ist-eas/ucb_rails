@@ -42,7 +42,7 @@ module UcbRails
 
       def process_default_url_options
         if hash.has_key?('default_url_options')
-          ActionMailer::Base.default_url_options = hash.fetch('default_url_options')
+          ActionMailer::Base.default_url_options = hash.fetch('default_url_options').symbolize_keys
         end
       end
 
