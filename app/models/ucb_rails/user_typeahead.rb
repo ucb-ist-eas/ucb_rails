@@ -55,8 +55,8 @@ module UcbRails
     
     def where(query)
       tokens = query.to_s.strip.split(/\s+/)
-      wheres = tokens.map { |e| "#{search_column} like ?" }.join(' and ')
-      values = tokens.map { |e| "%#{e}%" }
+      wheres = build_wheres(tokens)
+      values = build_values(tokens)
       
       ["#{wheres}", *values]
     end
@@ -75,6 +75,24 @@ module UcbRails
         raise ArgumentError, msg
       end
       
+    end
+
+    private
+    def build_wheres(tokens)
+      if ActiveRecord::Base.connection.kind_of?(ActiveRecord::ConnectionAdapters::OracleEnhancedAdapter)      
+        tokens.map { |e| "REGEXP_LIKE(#{search_column}, ?, 'i' )" }.join(' and ')
+      else
+        tokens.map { |e| "#{search_column} like ?" }.join(' and ')
+      end
+    end
+
+    def build_values(tokens)
+      if ActiveRecord::Base.connection.kind_of?(ActiveRecord::ConnectionAdapters::OracleEnhancedAdapter)      
+        tokens.map { |e| "#{e}" }      
+      else
+        tokens.map { |e| "%#{e}%" }      
+      end
+
     end
   end
   
