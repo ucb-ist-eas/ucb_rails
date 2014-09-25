@@ -12,7 +12,8 @@ module UcbRails::LdapPerson
 
     def find_by_uid(uid)
       benchmark("find_by_uid(#{uid})") do
-        find_by_attributes(:uid => uid.to_s).first
+        find_by_attributes(:uid => uid.to_s).first ||
+          find_expired_by_attributes(:uid => uid.to_s).first
       end
     end
 
@@ -34,7 +35,7 @@ module UcbRails::LdapPerson
     def find_by_affiliate_id(affiliate_id)
       find_by_attributes("berkeleyEduAffID" => affiliate_id)
     end
-    
+
     def find_by_attributes(attributes)
       attributes.each { |k, v| attributes.delete(k) if v.blank?  }
       UCB::LDAP::Person.

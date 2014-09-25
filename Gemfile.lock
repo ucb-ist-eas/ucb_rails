@@ -1,7 +1,14 @@
+GIT
+  remote: git@github.com:ucb-ist-eas/ucb-ldap.git
+  revision: 26d7e5583f4b11e13afd3639e604bdcaef5a8040
+  specs:
+    ucb_ldap (2.0.0.pre6)
+      net-ldap (= 0.2.2)
+
 PATH
   remote: .
   specs:
-    ucb_rails (0.0.13)
+    ucb_rails (0.0.14)
       active_attr
       bootstrap-datepicker-rails
       bootstrap-sass (~> 2.3)
@@ -18,7 +25,7 @@ PATH
       rails_view_helpers (~> 0.0.3)
       sass-rails (~> 3.2)
       simple_form (~> 2.1.0)
-      ucb_ldap (= 2.0.0.pre1)
+      ucb_ldap (= 2.0.0.pre6)
       user_announcements (~> 0.0.8)
 
 GEM
@@ -37,9 +44,9 @@ GEM
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.2.1)
-    active_attr (0.8.2)
-      activemodel (>= 3.0.2, < 4.1)
-      activesupport (>= 3.0.2, < 4.1)
+    active_attr (0.8.4)
+      activemodel (>= 3.0.2, < 4.2)
+      activesupport (>= 3.0.2, < 4.2)
     activemodel (3.2.13)
       activesupport (= 3.2.13)
       builder (~> 3.0.0)
@@ -54,9 +61,9 @@ GEM
     activesupport (3.2.13)
       i18n (= 0.6.1)
       multi_json (~> 1.0)
-    addressable (2.3.5)
+    addressable (2.3.6)
     arel (3.0.3)
-    bootstrap-datepicker-rails (1.3.0.1)
+    bootstrap-datepicker-rails (1.3.0.2)
       railties (>= 3.0)
     bootstrap-sass (2.3.2.2)
       sass (~> 3.2)
@@ -121,7 +128,7 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.0)
-    kaminari (0.15.1)
+    kaminari (0.16.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     listen (1.1.3)
@@ -146,7 +153,7 @@ GEM
       addressable (~> 2.3)
       nokogiri (~> 1.5)
       omniauth (~> 1.1.0)
-    polyglot (0.3.3)
+    polyglot (0.3.5)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
       method_source (~> 0.8)
@@ -202,7 +209,7 @@ GEM
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
       rspec-mocks (~> 2.13.0)
-    sass (3.2.14)
+    sass (3.4.5)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
@@ -229,9 +236,7 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (0.3.38)
-    ucb_ldap (2.0.0.pre1)
-      net-ldap (= 0.2.2)
+    tzinfo (0.3.41)
     user_announcements (0.0.8)
       jquery-rails
       rails
@@ -252,4 +257,5 @@ DEPENDENCIES
   rspec-rails
   shoulda-matchers
   sqlite3
+  ucb_ldap!
   ucb_rails!

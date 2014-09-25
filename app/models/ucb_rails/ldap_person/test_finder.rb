@@ -17,7 +17,7 @@ module UcbRails::LdapPerson
     def find_by_affiliate_id(affiliate_id)
       find_by_attributes("affiliate_id" => affiliate_id)
     end
-    
+
     def find_by_attributes(attributes)
       self.class.entries.select { |entry| entry_matches_attributes(entry, attributes) }
     end
@@ -48,7 +48,8 @@ module UcbRails::LdapPerson
         :phone => phone,
         :departments => depts,
         :employee_id => employee_id,
-        :affiliate_id => affiliate_id
+        :affiliate_id => affiliate_id,
+        :inactive => false
       )
     end
 

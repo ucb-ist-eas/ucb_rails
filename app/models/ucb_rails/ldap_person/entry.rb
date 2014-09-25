@@ -17,7 +17,8 @@ module UcbRails::LdapPerson
     attribute :departments
     attribute :affiliations
     attribute :affiliate_id
-    
+    attribute :inactive
+
     def full_name
       "#{first_name()} #{last_name()}"
     end
@@ -38,6 +39,7 @@ module UcbRails::LdapPerson
     class << self
 
       def new_from_ldap_entry(ldap_entry)
+        p ldap_entry.expired?
         new(
           :uid => ldap_entry.uid,
           :calnet_id => ldap_entry.berkeleyedukerberosprincipalstring.first,
@@ -48,7 +50,8 @@ module UcbRails::LdapPerson
           :phone => ldap_entry.phone,
           :departments => ldap_entry.berkeleyeduunithrdeptname,
           :affiliations => ldap_entry.berkeleyeduaffiliations,
-          :affiliate_id => ldap_entry.berkeleyeduaffid
+          :affiliate_id => ldap_entry.berkeleyeduaffid,
+          :inactive => ldap_entry.expired? || false
         )
       end
 
