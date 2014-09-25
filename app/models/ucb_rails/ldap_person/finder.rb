@@ -22,7 +22,7 @@ module UcbRails::LdapPerson
 
     def find_by_first_last(first_name, last_name, options={})
       raise BlankSearchTermsError unless first_name.present? || last_name.present?
-      
+
       find_by_attributes(:givenname => first_name, :sn => last_name).tap do |entries|
         if options[:sort]
           sort_symbol = options[:sort]
@@ -38,6 +38,13 @@ module UcbRails::LdapPerson
     def find_by_attributes(attributes)
       attributes.each { |k, v| attributes.delete(k) if v.blank?  }
       UCB::LDAP::Person.
+        search(:filter => build_filter(attributes)).
+        map { |ldap_entry| Entry.new_from_ldap_entry(ldap_entry) }
+    end
+
+    def find_expired_by_attributes(attributes)
+      attributes.each { |k, v| attributes.delete(k) if v.blank?  }
+      UCB::LDAP::ExpiredPerson.
         search(:filter => build_filter(attributes)).
         map { |ldap_entry| Entry.new_from_ldap_entry(ldap_entry) }
     end
@@ -66,6 +73,6 @@ module UcbRails::LdapPerson
         klass.new.send(method, *args)
       end
     end
-    
+
   end
 end
