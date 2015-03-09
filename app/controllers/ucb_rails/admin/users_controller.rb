@@ -5,7 +5,7 @@ class UcbRails::Admin::UsersController < UcbRails::Admin::BaseController
   def index
     respond_to do |format|
       format.html { @users = UcbRails::User.all }
-      format.json { render json: UcbRails::UsersDatatable.new(view_context) }
+      format.json { render json: UcbRails::UsersDatatable.new(view_context).as_json }
     end
   end
   
