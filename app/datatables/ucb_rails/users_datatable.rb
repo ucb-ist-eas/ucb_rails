@@ -7,7 +7,7 @@ class UcbRails::UsersDatatable < UcbRails::BaseDatatable
   end
   
   def column_names
-    @column_names ||= %w[admin inactive first_name last_name email phone last_request_at uid]
+    @column_names ||= %w[admin inactive first_name last_name email alternate_email phone last_request_at uid]
   end
   
   def search(search_term)
@@ -21,6 +21,7 @@ class UcbRails::UsersDatatable < UcbRails::BaseDatatable
       h(user.first_name),
       h(user.last_name),
       h(user.email),
+      h(user.alternate_email),
       h(user.phone),
       h(user.last_request_at),
       h(user.uid),

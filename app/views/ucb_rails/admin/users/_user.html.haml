@@ -5,6 +5,7 @@
   %td= user.first_name
   %td= user.last_name
   %td= mail_to(user.email)
+  %td= mail_to(user.alternate_email)
   %td.phone= user.phone
   %td.dt= datetime_to_s(user.last_request_at, :long)
   %td.min= user.uid
