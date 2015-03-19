@@ -68,4 +68,10 @@ host app (if any) will take precedence.
 * `current_ldap_person`
 * `logged_in?`
  
+## Upgrading From An Older Version
 
+If you're upgrading from a version older than March 2015, you'll need to run an extra migration in the project that contains the ucb_rails gem. This will add an `alternate_email` column to your users table.
+
+```
+cp ucb_rails/dummy/db/migrate//20150318234744_add_alternate_email_to_users.rb [YOUR_PROJECT_ROOT]/db/migrate
+```
