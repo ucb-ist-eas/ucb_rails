@@ -5,7 +5,7 @@ describe UcbRails::ControllerMethods do
   
   describe '#logged_in?' do
     it "true" do
-      controller.stub(current_user: mock('user'))
+      controller.stub(current_user: double('user'))
       controller.should be_logged_in
     end
     
@@ -17,8 +17,8 @@ describe UcbRails::ControllerMethods do
   
   describe 'setting Thread.current[:current_user]' do
     it "set in log request, cleared in remove_user_settings" do
-      user_mock = mock('user')
-      session_manager_mock = mock('session_manager')
+      user_mock = double('user')
+      session_manager_mock = double('session_manager')
       controller.stub(user_session_manager: session_manager_mock)
       controller.stub(current_user: user_mock)
       session_manager_mock.should_receive(:log_request).with(user_mock)
@@ -32,7 +32,7 @@ describe UcbRails::ControllerMethods do
   
   describe '#current_ldap_person' do
     it "logged in" do
-      # ldap_person = mock('ldap_person')
+      # ldap_person = double('ldap_person')
       # controller.stub(logged_in?: true)
       # UCB::LDAP::Person.should_receive(:find_by_uid).with('123').and_return(ldap_person)
       # controller.current_ldap_person.should == ldap_person

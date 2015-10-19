@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130614154240) do
+ActiveRecord::Schema.define(:version => 20150318234744) do
 
   create_table "announcements", :force => true do |t|
     t.text     "message"
@@ -49,6 +49,7 @@ ActiveRecord::Schema.define(:version => 20130614154240) do
     t.datetime "last_logout_at"
     t.datetime "created_at",                                        :null => false
     t.datetime "updated_at",                                        :null => false
+    t.string   "alternate_email"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email"

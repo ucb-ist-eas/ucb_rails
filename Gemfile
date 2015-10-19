@@ -9,6 +9,8 @@ gemspec
 
 # jquery-rails is used by the dummy application
 gem "jquery-rails"
+gem 'bootstrap-view-helpers', github: "ucb-ist-eas/bootstrap-view-helpers", branch: "rails4"
+
 
 # Declare any dependencies that are still in development here instead of in
 # your gemspec. These might include edge Rails or gems from your path or

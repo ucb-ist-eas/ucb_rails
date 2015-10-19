@@ -7,12 +7,21 @@ Spork.prefork do
   require "rails/application"
   require File.expand_path("../../dummy/config/environment", __FILE__)
   require 'rspec/rails'
-  require 'shoulda/matchers/integrations/rspec'
+
+
   require 'rspec/autorun'
   require 'database_cleaner'
   require 'capybara/rspec'
-  require 'capybara/webkit'# if ENV['WEBKIT']
+  require 'shoulda-matchers'
 
+  Shoulda::Matchers.configure do |config|
+    config.integrate do |with|
+      with.test_framework :rspec
+      with.library :rails
+    end
+  end
+
+  require 'capybara/webkit'# if ENV['WEBKIT']
   Capybara.javascript_driver = :webkit
 
 
@@ -29,6 +38,7 @@ Spork.prefork do
     config.filter_run focus: true
     config.order = "random"
     config.run_all_when_everything_filtered = true
+    config.infer_spec_type_from_file_location!
 
     config.before(:each) do
       DatabaseCleaner.strategy = :truncation #example.metadata[:js] ? :truncation : :transaction

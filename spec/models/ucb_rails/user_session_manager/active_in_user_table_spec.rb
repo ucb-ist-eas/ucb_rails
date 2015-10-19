@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe UcbRails::UserSessionManager::ActiveInUserTable do
   let(:manager) { UcbRails::UserSessionManager::ActiveInUserTable.new }
-  let(:user) { UcbRails::User.create!({uid: 1}, without_protection: true) }
+  let(:user) { UcbRails::User.create!(uid: 1) }
   let(:last_user) { UcbRails::User.last! }
   
   describe "login" do
@@ -16,18 +16,18 @@ describe UcbRails::UserSessionManager::ActiveInUserTable do
       
       it "inactive in User table" do
         user.update_attribute(:inactive, true)
-        manager.login("1").should be_false
+        manager.login("1").should be_falsey
       end
       
       it "not in User table" do
-        manager.login("1").should be_false
+        manager.login("1").should be_falsey
       end
     end
 
     context 'not in ldap' do
       it "always false" do
         user
-        manager.login("100").should be_false
+        manager.login("100").should be_falsey
       end
     end
     
