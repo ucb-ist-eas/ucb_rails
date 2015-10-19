@@ -50,13 +50,13 @@ describe UcbRails::Configuration::Email do
   describe 'raise_delivery_errors' do
     it "defaults to true" do
       klass.new({})
-      amb.raise_delivery_errors.should be_true
+      amb.raise_delivery_errors.should be_truthy
     end
 
     it "can be set" do
       config = { 'raise_delivery_errors' => false}
       klass.new(config)
-      amb.raise_delivery_errors.should be_false
+      amb.raise_delivery_errors.should be_falsey
     end
   end
 

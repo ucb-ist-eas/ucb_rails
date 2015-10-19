@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe UcbRails::UserSessionManager::InPeopleOuAddToUsersTable do
   let(:manager) { UcbRails::UserSessionManager::InPeopleOuAddToUsersTable.new }
-  let(:user) { UcbRails::User.create!({uid: 1}, without_protection: true) }
+  let(:user) { UcbRails::User.create!(uid: 1) }
   
   describe '#login' do
     
@@ -19,8 +19,8 @@ describe UcbRails::UserSessionManager::InPeopleOuAddToUsersTable do
     
     describe 'not in People OU' do
       it "always false" do
-        UcbRails::User.create!({uid: 100}, without_protection: true)
-        manager.login("100").should be_false
+        UcbRails::User.create!(uid: 100)
+        manager.login("100").should be_falsey
       end
     end
     

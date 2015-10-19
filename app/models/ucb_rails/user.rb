@@ -1,7 +1,7 @@
 class UcbRails::User < ActiveRecord::Base
   self.table_name = 'users'
 
-  attr_accessible :uid, :first_name, :last_name, :inactive
+  # attr_accessible :uid, :first_name, :last_name, :inactive
 
   before_validation :set_first_last_name
 

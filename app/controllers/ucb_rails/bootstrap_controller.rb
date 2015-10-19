@@ -14,7 +14,7 @@ class UcbRails::BootstrapController < ApplicationController
       UCB::LDAP::Person.find_by_uid(uid).tap do |e|
         return render_text("Bad uid: #{uid.inspect}") if e.blank?
         user = UcbRails::UserLdapService.create_user_from_uid(uid)
-        user.update_attributes({admin: true}, without_protection: true)
+        user.update_attributes(admin: true)
         redirect_to login_path
       end
     else

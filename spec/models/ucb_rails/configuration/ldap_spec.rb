@@ -16,7 +16,7 @@ describe UcbRails::Configuration::Ldap do
       it "sets test host" do
         klass.configure(config)
         ldap.host.should == 'nds-test.berkeley.edu'
-        UCB::LDAP::Person.include_test_entries?.should be_true
+        UCB::LDAP::Person.include_test_entries?.should be_truthy
       end
     end
 
@@ -26,7 +26,7 @@ describe UcbRails::Configuration::Ldap do
       it "sets production host" do
         klass.configure(config)
         ldap.host.should == 'nds.berkeley.edu'
-        UCB::LDAP::Person.include_test_entries?.should be_false
+        UCB::LDAP::Person.include_test_entries?.should be_falsey
       end
     end
 
@@ -45,7 +45,7 @@ describe UcbRails::Configuration::Ldap do
       it "sets test host" do
         klass.configure(config)
         ldap.host.should == 'HOST'
-        UCB::LDAP::Person.include_test_entries?.should be_true
+        UCB::LDAP::Person.include_test_entries?.should be_truthy
       end
     end
 
@@ -55,7 +55,7 @@ describe UcbRails::Configuration::Ldap do
       it "sets production host" do
         klass.configure(config)
         ldap.host.should == 'HOST'
-        UCB::LDAP::Person.include_test_entries?.should be_true
+        UCB::LDAP::Person.include_test_entries?.should be_truthy
       end
     end
 

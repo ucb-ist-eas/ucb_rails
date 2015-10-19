@@ -7,7 +7,7 @@ describe 'UcbRails::Renderer::LdapPersonSearchResultLink' do
   ActionView::Base.send(:include, Bootstrap::CommonHelper)
   
   let(:klass) { UcbRails::Renderer::LdapPersonSearchResultLink }
-  let(:entry) { mock('entry', uid: '123', first_name: 'Art', last_name: 'Andrews', email: 'aa@example.com') }
+  let(:entry) { double('entry', uid: '123', first_name: 'Art', last_name: 'Andrews', email: 'aa@example.com') }
   let(:template) do
     ActionView::Base.new.tap do |t|
       t.stub(params: {})

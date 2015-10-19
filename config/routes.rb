@@ -1,15 +1,15 @@
 Rails.application.routes.draw do
   root to: 'ucb_rails/home#index'
   
-  match 'ucb_rails', :to => 'ucb_rails/home#index'
+  match 'ucb_rails', :to => 'ucb_rails/home#index', via: [:get]
   
-  match '/login', :to => 'ucb_rails/sessions#new', :as => 'login'
-  match '/logout', :to => 'ucb_rails/sessions#destroy', :as => 'logout'
-  match '/auth/:omniauth_provider/callback' => 'ucb_rails/sessions#create'
-  match '/auth/failure' => "ucb_rails/sessions#failure"
-  match '/not_authorized', :to => 'ucb_rails/sessions#not_authorized', as: 'not_authorized'
+  match '/login', :to => 'ucb_rails/sessions#new', :as => 'login', via: [:post]
+  match '/logout', :to => 'ucb_rails/sessions#destroy', :as => 'logout', via: [:all]
+  match '/auth/:omniauth_provider/callback' => 'ucb_rails/sessions#create', via: [:get]
+  match '/auth/failure' => "ucb_rails/sessions#failure", via: [:get]
+  match '/not_authorized', :to => 'ucb_rails/sessions#not_authorized', as: 'not_authorized', via: [:get]
   
-  match '/ucb_rails/bootstrap(/:uid)' => 'ucb_rails/bootstrap#index'
+  match '/ucb_rails/bootstrap(/:uid)' => 'ucb_rails/bootstrap#index', via: [:get]
   
   resources :hidden_announcements, path: '/announcements', only: [:index, :create, :destroy]
 
