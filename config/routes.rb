@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   
   match 'ucb_rails', :to => 'ucb_rails/home#index', via: [:get]
   
-  match '/login', :to => 'ucb_rails/sessions#new', :as => 'login', via: [:post]
+  match '/login', :to => 'ucb_rails/sessions#new', :as => 'login', via: [:get]
   match '/logout', :to => 'ucb_rails/sessions#destroy', :as => 'logout', via: [:all]
   match '/auth/:omniauth_provider/callback' => 'ucb_rails/sessions#create', via: [:get]
   match '/auth/failure' => "ucb_rails/sessions#failure", via: [:get]
