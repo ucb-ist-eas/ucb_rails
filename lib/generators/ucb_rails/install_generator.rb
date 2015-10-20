@@ -36,7 +36,7 @@ module UcbRails
           # migration_template migration_file
           # puts migration_file
           relative_name = Pathname.new(migration_file).relative_path_from(Pathname.new(template_dir))
-          migration_template relative_name
+          migration_template 'install_ucb_rails.rb', relative_name
         end
       end
     end
