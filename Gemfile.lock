@@ -8,6 +8,15 @@ GIT
       rails
 
 GIT
+  remote: git://github.com/ucb-ist-eas/rails_view_helpers.git
+  revision: 79dea73832cc3e2ad09b33394c3f45e2f238a853
+  branch: rails4
+  specs:
+    rails_view_helpers (0.0.3)
+      jquery-rails
+      rails (~> 4.2.4)
+
+GIT
   remote: git@github.com:ucb-ist-eas/ucb-ldap.git
   revision: 26d7e5583f4b11e13afd3639e604bdcaef5a8040
   specs:
@@ -310,6 +319,7 @@ DEPENDENCIES
   guard-rspec
   guard-spork
   jquery-rails
+  rails_view_helpers!
   rspec-rails
   shoulda-matchers
   sqlite3
