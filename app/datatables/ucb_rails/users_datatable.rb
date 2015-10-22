@@ -16,8 +16,8 @@ class UcbRails::UsersDatatable < UcbRails::BaseDatatable
   
   def record_to_data(user)
     [
-      user.admin? ? 1 : 0,
-      user.inactive? ? 1 : 0,
+      user.admin? ? "Yes" : "No",
+      user.inactive? ? "Yes" : "No",
       sanitize(user.first_name),
       sanitize(user.last_name),
       sanitize(user.email),
