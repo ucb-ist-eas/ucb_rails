@@ -23,7 +23,7 @@ class UcbRails::UsersDatatable < UcbRails::BaseDatatable
       sanitize(user.email),
       sanitize(user.alternate_email),
       sanitize(user.phone),
-      sanitize(user.last_request_at),
+      user.last_request_at.to_s,
       sanitize(user.uid),
       link_to("Edit", edit_ucb_rails_admin_user_path(user), :id => dom_id(user)),
       link_to('Delete', ucb_rails_admin_user_path(user), :method => :delete, :confirm => 'Are you sure?'),
