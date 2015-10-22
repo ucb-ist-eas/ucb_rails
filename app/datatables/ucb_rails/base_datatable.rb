@@ -44,6 +44,8 @@
 # end
 #
 class UcbRails::BaseDatatable
+  include ActionView::Helpers::SanitizeHelper
+
   
   def initialize(view)
     @view = view

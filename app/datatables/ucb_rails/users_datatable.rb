@@ -16,15 +16,15 @@ class UcbRails::UsersDatatable < UcbRails::BaseDatatable
   
   def record_to_data(user)
     [
-      bln(user.admin),
-      bln(user.inactive),
-      h(user.first_name),
-      h(user.last_name),
-      h(user.email),
-      h(user.alternate_email),
-      h(user.phone),
-      h(user.last_request_at),
-      h(user.uid),
+      user.admin? ? 1 : 0,
+      user.inactive? ? 1 : 0,
+      sanitize(user.first_name),
+      sanitize(user.last_name),
+      sanitize(user.email),
+      sanitize(user.alternate_email),
+      sanitize(user.phone),
+      sanitize(user.last_request_at),
+      sanitize(user.uid),
       link_to("Edit", edit_ucb_rails_admin_user_path(user), :id => dom_id(user)),
       link_to('Delete', ucb_rails_admin_user_path(user), :method => :delete, :confirm => 'Are you sure?'),
     ]
