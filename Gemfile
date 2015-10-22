@@ -10,6 +10,7 @@ gemspec
 # jquery-rails is used by the dummy application
 gem "jquery-rails"
 gem 'bootstrap-view-helpers', github: "ucb-ist-eas/bootstrap-view-helpers", branch: "rails4"
+gem 'rails_view_helpers', github: "ucb-ist-eas/rails_view_helpers", branch: "rails4"
 
 
 # Declare any dependencies that are still in development here instead of in
