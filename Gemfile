@@ -11,7 +11,7 @@ gemspec
 gem "jquery-rails"
 gem 'bootstrap-view-helpers', github: "ucb-ist-eas/bootstrap-view-helpers", branch: "rails4"
 gem 'rails_view_helpers', github: "ucb-ist-eas/rails_view_helpers", branch: "rails4"
-
+gem 'user_announcements', github: "ucb-ist-eas/user_announcements", branch: "rails4"
 
 # Declare any dependencies that are still in development here instead of in
 # your gemspec. These might include edge Rails or gems from your path or

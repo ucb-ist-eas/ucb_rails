@@ -17,6 +17,15 @@ GIT
       rails (~> 4.2.4)
 
 GIT
+  remote: git://github.com/ucb-ist-eas/user_announcements.git
+  revision: 557e2ca64eb0f20819dc35609af52a4fabf09098
+  branch: rails4
+  specs:
+    user_announcements (0.0.8)
+      jquery-rails
+      rails
+
+GIT
   remote: git@github.com:ucb-ist-eas/ucb-ldap.git
   revision: 26d7e5583f4b11e13afd3639e604bdcaef5a8040
   specs:
@@ -43,7 +52,6 @@ PATH
       sass-rails (~> 5.0.4)
       simple_form (~> 3.2.0)
       ucb_ldap (= 2.0.0.pre6)
-      user_announcements (~> 0.0.8)
 
 GEM
   remote: http://rubygems.org/
@@ -301,9 +309,6 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.1)
-    user_announcements (0.0.8)
-      jquery-rails
-      rails
     xpath (2.0.0)
       nokogiri (~> 1.3)
 
@@ -325,6 +330,7 @@ DEPENDENCIES
   sqlite3
   ucb_ldap!
   ucb_rails!
+  user_announcements!
 
 BUNDLED WITH
    1.10.6
