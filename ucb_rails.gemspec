@@ -39,7 +39,7 @@ Gem::Specification.new do |s|
   # s.add_dependency 'bootstrap-view-helpers', github: "ucb-ist-eas/bootstrap-view-helpers", branch: "rail4"
   # s.add_dependency 'rails_view_helpers', '~> 0.0.3'
 
-  s.add_dependency 'user_announcements', '~> 0.0.8'
+  # s.add_dependency 'user_announcements', '~> 0.0.8'
   
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency "capybara"
