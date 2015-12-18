@@ -24,7 +24,7 @@ module UcbRails::LdapPerson
     def find_by_first_last(first_name, last_name, options={})
       raise BlankSearchTermsError unless first_name.present? || last_name.present?
 
-      find_by_attributes(:givenname => first_name, :sn => last_name).tap do |entries|
+      find_by_attributes({:givenname => first_name, :sn => last_name}, options).tap do |entries|
         if options[:sort]
           sort_symbol = options[:sort]
           entries.sort_by!(&options[:sort])
@@ -36,10 +36,15 @@ module UcbRails::LdapPerson
       find_by_attributes("berkeleyEduAffID" => affiliate_id)
     end
 
-    def find_by_attributes(attributes)
+    def find_by_attributes(attributes, options={})
       attributes.each { |k, v| attributes.delete(k) if v.blank?  }
+
+      search_opts = { :filter => build_filter(attributes) }
+      search_opts[:return_result] = options[:return_result] if options.has_key?(:return_result)
+      search_opts[:size] = options[:size] if options.has_key?(:size)
+
       UCB::LDAP::Person.
-        search(:filter => build_filter(attributes)).
+        search(search_opts).
         map { |ldap_entry| Entry.new_from_ldap_entry(ldap_entry) }
     end
 
@@ -50,9 +55,12 @@ module UcbRails::LdapPerson
         map { |ldap_entry| Entry.new_from_ldap_entry(ldap_entry) }
     end
 
-    def build_filter(attrs)
-      filter_parts = attrs.map { |k, v| build_filter_part(k, v) }
-      filter = filter_parts.inject { |accum, filter| accum.send(:&, filter) }
+    def build_filter(attrs, options={})
+      operator = options[:operator] || :&
+      filter_parts = attrs.map { |k, values| 
+        Array(values).map{|v| build_filter_part(k, v) }
+      }.flatten
+      filter = filter_parts.inject { |accum, filter| accum.send(operator, filter) }
       filter
     end
 

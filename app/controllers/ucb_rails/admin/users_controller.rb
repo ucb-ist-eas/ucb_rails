@@ -58,6 +58,10 @@ class UcbRails::Admin::UsersController < UcbRails::Admin::BaseController
     render json: uta.results(params.fetch(:query))
   end
   
+  def omni_typeahead_search
+    uta = UcbRails::OmniUserTypeahead.new
+    render json: uta.results(params.fetch(:query))
+  end
   private
 
   def find_user
