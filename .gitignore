@@ -10,3 +10,5 @@ dummy/.sass-cache
 *.tmproj
 tmp/*
 .yardoc
+Gemfile.lock
+.byebug_history

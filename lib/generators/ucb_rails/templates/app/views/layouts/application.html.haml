@@ -12,10 +12,10 @@
   %body{data: {controller: controller.controller_name, action: controller.action_name}}
     = render 'layouts/navigation'
     #main{:role => "main"}
-      .container-fluid
+      .container
         .content
-          .row-fluid
-            .span12
+          .row
+            .col-md-12
               = user_announcements
               = flash_messages
               = yield

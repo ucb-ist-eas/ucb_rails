@@ -1,3 +1,4 @@
-$baseFontSize: 13px;
-
+@import "ucb_rails/variables";
+@import "bootstrap-sprockets";
 @import "bootstrap";
+@import "ucb_rails";

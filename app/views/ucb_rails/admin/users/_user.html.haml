@@ -9,6 +9,6 @@
   %td.phone= user.phone
   %td.dt= datetime_to_s(user.last_request_at, :long)
   %td.min= user.uid
-  %td= link_to('edit', edit_ucb_rails_admin_user_path(user), :class => 'btn btn-mini', :id => dom_id(user, 'edit')) 
-  %td= link_to('delete', ucb_rails_admin_user_path(user), :data => {confirm: 'Are you sure?'}, :method => :delete, :class => 'btn btn-mini btn-danger')
+  %td= link_to('edit', edit_ucb_rails_admin_user_path(user), :class => 'btn btn-default btn-xs', :id => dom_id(user, 'edit')) 
+  %td= link_to('delete', ucb_rails_admin_user_path(user), :data => {confirm: 'Are you sure?'}, :method => :delete, :class => 'btn btn-xs btn-danger')
   

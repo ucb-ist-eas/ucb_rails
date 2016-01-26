@@ -43,7 +43,17 @@ Remove superseded files:
 
 ```sh
 rm public/index.html
-rm app/views/layouts/application.html.erb  
+```
+
+Add includes to application stylesheet
+
+```ruby
+ *= require bootstrap-datepicker3
+```
+
+Add includes to application javascript
+```ruby
+//= require bootstrap-datepicker
 ```
 
 Restart your server and point your browser to:

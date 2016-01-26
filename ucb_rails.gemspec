@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
   s.version     = UcbRails::VERSION
   s.authors     = ["Steve Downey"]
   s.email       = ["steve.downtown@gmail.com"]
-  s.homepage    = "https://github.com/stevedowney/ucb_rails"
+  s.homepage    = "https://github.com/ucb-ist-eas/ucb_rails"
   s.summary     = "Jumpstart a UCB Rails application."
 
   s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
@@ -17,30 +17,31 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 4.2"
   s.add_dependency "jquery-rails"
   
+  # Enable this gems when pushed to ruby gems
   s.add_dependency 'ucb_ldap', '2.0.0.pre6'
+  s.add_dependency 'ucb_rails_ci', '1.0.0'
+
   s.add_dependency "exception_notification", "~> 4.0.0.rc1"
   s.add_dependency "omniauth", '1.1.1'
   s.add_dependency "omniauth-cas", '1.0.0'
   s.add_dependency "haml-rails"
-  s.add_dependency 'bootstrap-sass', '~> 2.3'
+  s.add_dependency 'bootstrap-sass', '~> 3.3.6'
   s.add_dependency 'sass-rails', '~> 5.0.4'
   s.add_dependency 'active_attr'
   s.add_dependency 'simple_form', '~> 3.2.0'
   s.add_dependency "jquery-datatables-rails", "~> 1.11.2"
   s.add_dependency 'kaminari'
+  s.add_dependency 'momentjs-rails', '>= 2.9.0'
   s.add_dependency 'bootstrap-datepicker-rails'
-  s.add_dependency 'responders', '~> 2.0'
-  
-  
+
+  s.add_dependency 'responders', '~> 2.0'  
 
   s.add_dependency 'rails_environment', '~> 0.0.3'
+ 
+  s.add_dependency 'rails_view_helpers', '~> 0.0.4'
+  s.add_dependency 'user_announcements', '~> 0.0.9'
+  s.add_dependency 'bootstrap-view-helpers', '~> 0.0.14'
 
-  # ADDED IN GEMFILE, WILL NEED TO BE ADDED TO PROJECT GEMFILE
-  # s.add_dependency 'bootstrap-view-helpers', github: "ucb-ist-eas/bootstrap-view-helpers", branch: "rail4"
-  # s.add_dependency 'rails_view_helpers', '~> 0.0.3'
-
-  # s.add_dependency 'user_announcements', '~> 0.0.8'
-  
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency "capybara"
   s.add_development_dependency "capybara-webkit"

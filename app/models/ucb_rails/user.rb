@@ -38,6 +38,10 @@ class UcbRails::User < ActiveRecord::Base
     UcbRails::LdapPerson::Finder.find_by_uid!(uid)
   end
 
+  def full_name
+    "#{first_name} #{last_name}"
+  end
+
   private
 
   def set_first_last_name

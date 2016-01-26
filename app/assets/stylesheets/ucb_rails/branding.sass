@@ -1,0 +1,66 @@
+
+
+body
+  background-image: asset-data-url("seal.png")
+  background-position:  105% 0px
+  background-repeat:  no-repeat
+  background-size: 36%
+  background-attachment: fixed
+  background-color: $body-bg
+
+h1, h2, h3
+  color: #00B0DA
+
+.nav-tabs > .active > a, .nav-tabs > .active > a:hover, .nav-tabs > .active > a:focus
+  background-color: $body-bg !important
+
+html body .nav > li > a:hover, html body .nav > li > a:focus
+  background-color: $vib-blue
+  color: white
+
+html body .form-actions
+  background-color: transparent
+  border-top: none
+
+.nav-list > .active > a, .nav-list > .active > a:hover, .nav-list > .active > a:focus
+  border-radius: 3px
+
+.nav-header,a
+  text-shadow: none !important
+
+html body .alert
+  display: inline-block
+
+html body .sidebar-nav
+  padding: 10px 0
+
+  .nav-header
+    border-top: 1px solid white
+
+    &:first-child
+      border-top: 0
+
+  .nav-header,
+  .nav-list a
+    padding: 10px 15px
+    margin-left: 0
+    margin-right: 0
+
+  .nav-list a
+    display: block
+
+html body .well
+  border: 1px solid $pri-blue
+  border-radius: 3px
+  background: rgba(245, 245, 245, 0.41)
+  
+  .nav-list
+    padding: 0
+
+.field_with_errors
+  display: inline-block
+
+.alert-error, .field_with_errors input, .field_with_errors select
+  background-color: #f2dede !important
+  border-color: #eed3d7 !important
+  color: #b94a48 !important
