@@ -1,13 +1,16 @@
 %h1 Logged In
 
 %p
-  Your are logged in as #{session[:uid]}
+  You are logged in as #{session[:uid]}
   
 %p
   = link_to("Logout", logout_path)
 
 %hr
-%p= current_ldap_person.inspect
+- begin
+  %p= current_ldap_person.inspect 
+- rescue Net::LDAP::LdapError, UCB::LDAP::BindFailedException => e
+  %p= current_user.inspect
 
 %hr
   = session.inspect

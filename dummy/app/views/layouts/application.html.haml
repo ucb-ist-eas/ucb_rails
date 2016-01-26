@@ -14,9 +14,8 @@
     #main{:role => "main"}
       .container-fluid
         .content
-          .row-fluid
-            .span12
-              = user_announcements
-              = flash_messages
-              = yield
+          .col-md-12
+            = user_announcements
+            = flash_messages
+            = yield
     = render partial: 'layouts/footer'
