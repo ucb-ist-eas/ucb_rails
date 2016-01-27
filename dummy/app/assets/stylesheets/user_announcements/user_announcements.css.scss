@@ -84,6 +84,7 @@ table.ua-table {
 }
 
 form.announcement-detail {
+  width: 600px;
   
   p {
     margin-top: 1em;
@@ -92,16 +93,6 @@ form.announcement-detail {
   
   label {
     margin-bottom: 0.4em;
-  }
- 
-  .ua-datetimepicker {
-    input {
-      width: 8em;
-    }
-  }
-  
-  p.datetime-select select {
-    width: 8em;
   }
   
 }
