@@ -1,7 +1,12 @@
-@import "ucb_rails/common";
-@import "ucb_rails/branding";
-@import "ucb_rails/typography";
-@import "ucb_rails/nav";
-@import "ucb_rails/buttons";
-@import "ucb_rails/bootstrap-view-helpers";
+@import 'ucb_rails/variables';
+@import 'bootstrap-sprockets';
+@import 'bootstrap';
+@import 'bootstrap-datetimepicker';
+@import 'dataTables/jquery.dataTables.bootstrap';
+@import 'ucb_rails/common';
+@import 'ucb_rails/branding';
+@import 'ucb_rails/typography';
+@import 'ucb_rails/nav';
+@import 'ucb_rails/buttons';
+@import 'ucb_rails/bootstrap-view-helpers';
 
