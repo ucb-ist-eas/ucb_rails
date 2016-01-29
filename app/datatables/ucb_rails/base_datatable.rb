@@ -54,10 +54,10 @@ class UcbRails::BaseDatatable
   # Data structure required by datatable.js server calls
   def as_json(options = {})
     {
-      sEcho: params[:sEcho].to_i,
-      iTotalRecords: default_scope.count,
-      iTotalDisplayRecords: records.total_count,
-      aaData: data
+      draw: params[:draw].to_i,
+      recordsTotal: default_scope.count,
+      recordsFiltered: records.total_count,
+      data: data
     }
   end
 
@@ -77,8 +77,9 @@ class UcbRails::BaseDatatable
       .per(per)
   end
   
+  # "search"=>{"value"=>"needle", "regex"=>"false"}
   def base_search
-    search_term = params[:sSearch]
+    search_term = params.fetch(:search).try(:fetch, :value)
     
     if search_term.present?
       search(search_term)
@@ -88,11 +89,11 @@ class UcbRails::BaseDatatable
   end
 
   def per
-    params[:iDisplayLength].to_i > 0 ? params[:iDisplayLength].to_i : 10
+    params[:pageLength].to_i > 0 ? params[:pageLength].to_i : 10
   end
 
   def page
-    params[:iDisplayStart].to_i/per + 1
+    params[:displayStart].to_i/per + 1
   end
   
   def order
@@ -100,13 +101,13 @@ class UcbRails::BaseDatatable
   end
   
   def order_clauses
-    (0...params['iSortingCols'].to_i).map { |i| order_clause(i) }
+    (0...params['order'].length).map { |i| order_clause(i) }
   end
   
   def order_clause(i)
-    column_key = "iSortCol_#{i}"
-    direction_key = "sSortDir_#{i}"
-    "#{column_names[params[column_key].to_i]} #{params[direction_key]}"
+    column = params['order'][i.to_s]['column'].to_i
+    direction = params['order'][i.to_s]['dir']
+    "#{column_names[column]} #{direction}"
   end
 
   # Delegate unknown methods to the view.  These are mostly standard View Helper methods.
