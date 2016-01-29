@@ -15,6 +15,8 @@ require 'jquery-datatables-rails'
 require 'exception_notification'
 require 'momentjs-rails'
 require 'bootstrap3-datetimepicker-rails'
+require 'sweetalert-rails'
+require 'sweet-alert-confirm'
 
 require 'rails_environment'
 require 'ucb_ldap'
