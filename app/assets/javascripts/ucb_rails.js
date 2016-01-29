@@ -2,8 +2,8 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 //= require dataTables/jquery.dataTables.api.fnSetFilteringDelay
-//= require dataTables/jquery.dataTables.bootstrap
 //= require moment
 //= require bootstrap-datetimepicker
 //= require_tree .

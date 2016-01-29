@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'sass-rails', '~> 5.0.4'
   s.add_dependency 'active_attr'
   s.add_dependency 'simple_form', '~> 3.2.0'
-  s.add_dependency "jquery-datatables-rails", "~> 1.11.2"
+  s.add_dependency "jquery-datatables-rails", '~> 3.3.0'
   s.add_dependency 'kaminari'
   s.add_dependency 'momentjs-rails', '>= 2.9.0'
   s.add_dependency 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
