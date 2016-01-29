@@ -3,6 +3,8 @@ require 'ucb_rails/log_tagger'
 
 require 'haml'
 require 'haml-rails'
+require 'turbolinks'
+require 'nprogress-rails'
 require 'kaminari'
 require 'omniauth'
 require 'omniauth-cas'
