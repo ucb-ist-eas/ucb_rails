@@ -1,7 +1,10 @@
 class UcbRails::Admin::UsersController < UcbRails::Admin::BaseController
   before_filter :find_user, :only => [:edit, :update, :destroy]
+  skip_before_filter :ensure_admin_user, only: :toggle_admin, if: ->{ Rails.env.development? }
+
   respond_to :html, :js
   
+
   def index
     respond_to do |format|
       format.html { @users = UcbRails::User.all }
@@ -57,11 +60,12 @@ class UcbRails::Admin::UsersController < UcbRails::Admin::BaseController
     uta = UcbRails::UserTypeahead.new
     render json: uta.results(params.fetch(:query))
   end
-  
-  def omni_typeahead_search
-    uta = UcbRails::OmniUserTypeahead.new
-    render json: uta.results(params.fetch(:query))
+
+  def toggle_admin
+    admin? ? current_user.update_column(:admin, false) : current_user.update_column(:admin, true)
+    redirect_to root_path
   end
+
   private
 
   def find_user

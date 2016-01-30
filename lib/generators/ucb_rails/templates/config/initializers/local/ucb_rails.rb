@@ -39,8 +39,8 @@ UcbRails.config do |config|
   #########################################################
 
   # config.user_session_manager = "UcbRails::UserSessionManager::InPeopleOu"
-  # config.user_session_manager = "UcbRails::UserSessionManager::InPeopleOuAddToUsersTable"
-  config.user_session_manager = "UcbRails::UserSessionManager::ActiveInUserTable"
+  config.user_session_manager = "UcbRails::UserSessionManager::InPeopleOuAddToUsersTable"
+  # config.user_session_manager = "UcbRails::UserSessionManager::ActiveInUserTable"
   # config.user_session_manager = "UcbRails::UserSessionManager::AdminInUserTable"
   
   #########################################################

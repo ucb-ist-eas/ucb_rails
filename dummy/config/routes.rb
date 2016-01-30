@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'toggle_admin_user' => 'admin_users#toggle_admin', as: "toggle_admin"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

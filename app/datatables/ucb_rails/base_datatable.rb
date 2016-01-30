@@ -56,7 +56,7 @@ class UcbRails::BaseDatatable
     {
       draw: params[:draw].to_i,
       recordsTotal: default_scope.count,
-      recordsFiltered: records.total_count,
+      recordsFiltered: records.count,
       data: data
     }
   end
@@ -73,8 +73,7 @@ class UcbRails::BaseDatatable
     @records ||= default_scope
       .where(base_search)
       .order(order)
-      .page(page)
-      .per(per)
+      .paginate(page: page, per_page: per)
   end
   
   # "search"=>{"value"=>"needle", "regex"=>"false"}
