@@ -11,15 +11,16 @@ Gem::Specification.new do |s|
   s.email       = ["steve.downtown@gmail.com"]
   s.homepage    = "https://github.com/ucb-ist-eas/ucb_rails"
   s.summary     = "Jumpstart a UCB Rails application."
+  s.date = Time.now.utc.strftime("%Y-%m-%d")
 
-  s.files = Dir["{app,config,db,lib}/**/*"] + ["MIT-LICENSE", "Rakefile", "README.md"]
+  s.files = `git ls-files`.split("\n")
 
   s.add_dependency "rails", "~> 4.2"
   s.add_dependency "jquery-rails"
   
   # Enable this gems when pushed to ruby gems
   s.add_dependency 'ucb_ldap', '2.0.0.pre6'
-  s.add_dependency 'ucb_rails_ci', '1.0.0'
+  s.add_dependency 'ucb_rails_ci', '~> 1.0.1'
 
   # s.add_dependency 'turbolinks'
   # s.add_dependency 'nprogress-rails', '~> 0.1.6.7'

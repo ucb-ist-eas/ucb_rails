@@ -1,14 +1,16 @@
 ****************************************************************************
+
 * Check configuration settings in config/initializers/local/ucb_rails.rb
 
 * run other generators, migrate db, remove superseded files
 
-rails generate user_announcements:install
-rails generate simple_form:install --bootstrap
-rake db:migrate
-cp config/config.yml.example config/config.yml
-rm public/index.html
-rm app/views/layouts/application.html.erb  
-  
+* Defaults to postgres; Local install on OSX may require(update version in path below as required): 
+
+*   gem install pg -- --with-pg-config=/Applications/Postgres.app/Contents/Versions/9.4/bin/pg_config
+
+* rails s
+
+* Login with cas and a user will be created for you. Edit config/initializers/local/ucb_rails.rb to change user login policy.
+
 
 ****************************************************************************

@@ -22,6 +22,7 @@ Rails.application.routes.draw do
       get 'email_test' => 'email_test#index'
       post 'email_test' => 'email_test#send_email'
       get 'force_exception' => 'force_exception#index'
+      get 'toggle_admin' => 'users#toggle_admin', as: "toggle_admin"
 
       resources :users do
         get 'ldap_search', on: :collection
