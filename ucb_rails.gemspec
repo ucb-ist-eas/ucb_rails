@@ -21,8 +21,8 @@ Gem::Specification.new do |s|
   s.add_dependency 'ucb_ldap', '2.0.0.pre6'
   s.add_dependency 'ucb_rails_ci', '1.0.0'
 
-  s.add_dependency 'turbolinks'
-  s.add_dependency 'nprogress-rails', '~> 0.1.6.7'
+  # s.add_dependency 'turbolinks'
+  # s.add_dependency 'nprogress-rails', '~> 0.1.6.7'
   s.add_dependency "exception_notification", "~> 4.0.0.rc1"
   s.add_dependency "omniauth", '1.1.1'
   s.add_dependency "omniauth-cas", '1.0.0'
