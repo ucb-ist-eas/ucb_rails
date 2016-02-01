@@ -2,4 +2,5 @@
   %hr
   .container
     %p.text-muted.credit
-      = [UcbRails[:user_session_manager], session[:omniauth_provider] ].join(', ')
+      - if Rails.env.development?
+        = [UcbRails[:user_session_manager], session[:omniauth_provider] ].join(', ')
