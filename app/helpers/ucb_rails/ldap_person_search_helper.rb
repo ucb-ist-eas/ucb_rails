@@ -5,9 +5,7 @@ module UcbRails::LdapPersonSearchHelper
   end
   
   def ldap_entry_class(entry)
-    Array['ldap-result'].tap do |result|
-      result << 'ldap-result-exists' if ldap_already_include?(entry.uid)
-    end
+    Array['ldap-result']
   end
   
   def ldap_already_include?(uid)

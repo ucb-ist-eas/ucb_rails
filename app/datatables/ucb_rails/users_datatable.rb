@@ -11,7 +11,7 @@ class UcbRails::UsersDatatable < UcbRails::BaseDatatable
   end
   
   def search(search_term)
-    ["first_name like :search or last_name like :search", search: "#{search_term}%"]
+    ["lower(first_name) like lower(:search) or lower(last_name) like lower(:search)", search: "#{search_term}%"]
   end
   
   def record_to_data(user)

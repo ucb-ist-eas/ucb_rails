@@ -65,6 +65,11 @@ class UcbRails::Admin::UsersController < UcbRails::Admin::BaseController
     admin? ? current_user.update_column(:admin, false) : current_user.update_column(:admin, true)
     redirect_to root_path
   end
+  
+  def omni_typeahead_search
+    uta = UcbRails::OmniUserTypeahead.new
+    render json: uta.results(params.fetch(:query))
+  end
 
   private
 

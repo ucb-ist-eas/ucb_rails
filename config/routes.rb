@@ -27,6 +27,7 @@ Rails.application.routes.draw do
       resources :users do
         get 'ldap_search', on: :collection
         get 'typeahead_search', on: :collection
+        get 'omni_typeahead_search', on: :collection
       end
     end
   end

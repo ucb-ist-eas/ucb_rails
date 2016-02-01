@@ -10,7 +10,7 @@ module UcbRails
       end
       
       def html
-        exists? ? exists_html : button(text, :mini, :primary, link_options)
+        button(text, :mini, :primary, link_options)
       end
       
       private
