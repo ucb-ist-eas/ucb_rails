@@ -9,7 +9,7 @@ class UcbRails::Admin::EmailTestController < UcbRails::Admin::BaseController
     email = params[:email]
     
     if email =~ EMAIL_REGEXP
-      @email_result = UcbRails::TestMailer.test(email).deliver
+      @email_result = UcbRails::TestMailer.test(email).deliver_now
       flash.now[:success] = 'Email sent.'
     else
       flash.now[:error] = 'Invalid email address'
