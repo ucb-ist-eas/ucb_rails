@@ -46,14 +46,26 @@ class UcbRails::Admin::UsersController < UcbRails::Admin::BaseController
   end
 
   def ldap_search
-    @lps_entries = UcbRails::LdapPerson::Finder.find_by_first_last(
-      params.fetch(:first_name),
-      params.fetch(:last_name), 
-      :sort => :last_first_downcase
-    )
-    @lps_existing_uids = UcbRails::User.where(uid: @lps_entries.map(&:uid)).pluck(:uid)
+    # FIXME: this was retrofitted to support typeahead ajax json queries
+    if(query = params[:query])
+      @lps_entries = UcbRails::OmniUserTypeahead.new.ldap_results(query)
+      @lps_entries.map!{|entry| 
+        attrs = entry.attributes.tap{|attrs| attrs["first_last_name"] = "#{attrs['first_name']} #{attrs['last_name']}" }
+        attrs.as_json
+      }
+      
+      render json: @lps_entries
 
-    render 'ucb_rails/lps/search'
+    else
+      @lps_entries = UcbRails::LdapPerson::Finder.find_by_first_last(
+        params.fetch(:first_name),
+        params.fetch(:last_name), 
+        :sort => :last_first_downcase
+      )
+      @lps_existing_uids = UcbRails::User.where(uid: @lps_entries.map(&:uid)).pluck(:uid)
+      render 'ucb_rails/lps/search'
+    end
+
   end
 
   def typeahead_search

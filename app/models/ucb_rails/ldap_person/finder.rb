@@ -39,7 +39,7 @@ module UcbRails::LdapPerson
     def find_by_attributes(attributes, options={})
       attributes.each { |k, v| attributes.delete(k) if v.blank?  }
 
-      search_opts = { :filter => build_filter(attributes) }
+      search_opts = { :filter => build_filter(attributes, options) }
       search_opts[:return_result] = options[:return_result] if options.has_key?(:return_result)
       search_opts[:size] = options[:size] if options.has_key?(:size)
 

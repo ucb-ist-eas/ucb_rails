@@ -1,6 +1,7 @@
 module UcbRails
   module Renderer
-    
+    MissingTypeaheadSearchUrl = Class.new(Exception)
+
     class LpsTypeaheadSearchField < Base
       
       attr_accessor :name, :label, :required, :value, :placeholder, :hint, :result_link_text, :result_link_class, :uid_dom_id, :typeahead_url, :ldap_search_url, :ldap_search
@@ -54,17 +55,24 @@ module UcbRails
       end
 
       def text_field_html
+
         text_field_tag(name, value, {
           autocomplete: 'off',
-          class: 'typeahead-lps-search',
+          class: 'typeahead-lps-search typeahead form-control',
           placeholder: placeholder,
-          data: {
-            url: typeahead_url,
-            uid_dom_id: uid_dom_id,
-          }
+          data: text_field_data_attributes
         })
       end
       
+      def text_field_data_attributes
+        data_attributes = {
+          uid_dom_id: uid_dom_id,
+          typeahead_url: self.typeahead_url,
+          ldap_search_url: self.ldap_search_url
+        }
+        return data_attributes
+      end
+
       def span_html
         span_options = {
           class: 'add-on ldap-person-search',
@@ -91,9 +99,8 @@ module UcbRails
         self.result_link_class = options.delete(:result_link_class) || 'lps-typeahead-item'
         self.uid_dom_id = options.delete(:uid_dom_id) || 'uid'
         self.typeahead_url = options.delete(:typeahead_url) || typeahead_search_ucb_rails_admin_users_path
-        self.ldap_search_url = options.delete(:ldap_search_url) || ldap_search_ucb_rails_admin_users_path
-        self.ldap_search = options.delete(:ldap_search) != false
-        
+        self.ldap_search_url = options.delete(:ldap_search_url) || ldap_search_ucb_rails_admin_users_path(format: :json)
+        self.ldap_search = options.delete(:ldap_search) != false # this option gives an icon to do a more rigitized lookup by first/last name
         validate_options
       end
       

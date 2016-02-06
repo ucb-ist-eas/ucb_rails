@@ -29,10 +29,11 @@ module UcbRails
     # @option options [Symbol] :first_last_name (search_column) the column holding the first/last names
     # @option options [FixNum] :limit (10) number of rows to return
     # @return [UcbRails::UserTypeahead]
+    DEFAULT_LIMIT = 10
     def initialize(options={})
       self.klass = options.delete(:klass) || UcbRails::User
       self.search_column = options.delete(:search_column) || :first_last_name
-      self.limit = options.delete(:limit) || 10
+      self.limit = options.delete(:limit) || DEFAULT_LIMIT
       self.uid_column = options.delete(:uid_column) || :uid
       self.first_last_name_column = options.delete(:first_last_name_column) || search_column
       validate_options(options)
@@ -81,6 +82,8 @@ module UcbRails
     def build_wheres(tokens)
       if defined?(ActiveRecord::ConnectionAdapters::OracleEnhancedAdapter) &&  ActiveRecord::Base.connection.kind_of?(ActiveRecord::ConnectionAdapters::OracleEnhancedAdapter)      
         tokens.map { |e| "REGEXP_LIKE(#{search_column}, ?, 'i' )" }.join(' and ')
+      elsif defined?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter) && ActiveRecord::Base.connection.kind_of?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter)
+        tokens.map { |e| "#{search_column} ILIKE ?" }.join(' and ')
       else
         tokens.map { |e| "#{search_column} like ?" }.join(' and ')
       end
