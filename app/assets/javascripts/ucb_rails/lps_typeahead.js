@@ -54,11 +54,14 @@ $(function() {
     highlight: true
   },
   {
+    name: 'local-dataset',
+    source: function(query, syncResults, asyncResults) {
+      var url  = this.$el.parents(".twitter-typeahead").find(".typeahead-lps-search").data('typeaheadUrl');
+      asyncTypeaheadSource(query, url, asyncResults);      
+    }
+  },
+  {
     name: 'ldap-dataset',
-    // source: function(query, syncResults, asyncResults) {
-    //   var url  = this.$el.parents(".twitter-typeahead").find(".typeahead-lps-search").data('typeaheadUrl');
-    //   asyncTypeaheadSource(query, url, asyncResults);
-    // },
     source: function(query, syncResults, asyncResults) {
       var url  = this.$el.parents(".twitter-typeahead").find(".typeahead-lps-search").data('ldapSearchUrl');
       asyncTypeaheadSource(query, url, asyncResults);
@@ -71,36 +74,5 @@ $(function() {
     $(this).removeClass('loading');
   });  
 
-  // set up typeahead callbacks
-  // $('.typeahead-lps-search').typeahead({}, {
-  //   source: function(query, process) {
-  //     return $.ajax({
-  //       url: $(this)[0].$element[0].dataset.url,
-  //       type: 'get',
-  //       data: {query: query},
-  //       dataType: 'json',
-
-  //       success: function(uid_name_json) {
-  //         names = [];
-  //         map = {};
-
-  //         $.each(uid_name_json, function (i, person) {
-  //           map[person.first_last_name] = person;
-  //           names.push(person.first_last_name);
-  //         });
-
-  //         process(names);
-  //       }
-  //     });
-  //   },
-  //   updater: function (item) {
-  //     var uidSelector = '#' + $(this)[0].$element[0].dataset.uidDomId;
-  //     $(uidSelector).val(map[item].uid);
-  //     return item;
-  //   },
-  //   matcher: function (item) {
-  //     return true;
-  //   },
-  // });
 
 })
