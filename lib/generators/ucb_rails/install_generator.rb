@@ -17,6 +17,7 @@ module UcbRails
         
         directory 'app/assets'
         directory 'app/helpers'
+        directory 'app/models'
         directory 'app/views'
         directory 'config'
         setup_gems
