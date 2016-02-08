@@ -13,7 +13,7 @@ module UcbRails::LpsTypeaheadHelper
   # @option options [String] :uid_dom_id ('uid') the dom-id of the (hidden) uid <input>
   # @option options [String] :typeahead_url ('/ucb_rails/admin/users/typeahead_search') the typeahead url
   # @option options [String] :ldap_search_url ('/ucb_rails/ldap_person_search/) the ldap search rul
-  # @option options [Boolean] :ldap_search (true) include the icon/markup for ldap searches
+  # @option options [Boolean] :ldap_modal_search (true) include the icon/markup for ldap searches
   def lps_typeahead_search_field(options={})
     UcbRails::Renderer::LpsTypeaheadSearchField.new(self, options).html
   end

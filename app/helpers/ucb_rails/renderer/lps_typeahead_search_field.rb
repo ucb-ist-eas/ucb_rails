@@ -4,7 +4,7 @@ module UcbRails
 
     class LpsTypeaheadSearchField < Base
       
-      attr_accessor :name, :label, :required, :value, :placeholder, :hint, :result_link_text, :result_link_class, :uid_dom_id, :typeahead_url, :ldap_search_url, :ldap_search
+      attr_accessor :name, :label, :required, :value, :placeholder, :hint, :result_link_text, :result_link_class, :uid_dom_id, :typeahead_url, :ldap_search_url, :ldap_modal_search
       
       def initialize(template, options={})
         super
@@ -35,7 +35,7 @@ module UcbRails
       end
       
       def inputs
-        if ldap_search
+        if ldap_modal_search
           input_append_div
         else
           text_field_html
@@ -43,7 +43,7 @@ module UcbRails
       end
 
       def hint_html
-        if ldap_search
+        if ldap_modal_search
           content_tag(:p, hint, class: 'help-block')
         end
       end
@@ -99,8 +99,8 @@ module UcbRails
         self.result_link_class = options.delete(:result_link_class) || 'lps-typeahead-item'
         self.uid_dom_id = options.delete(:uid_dom_id) || 'uid'
         self.typeahead_url = options.delete(:typeahead_url) || typeahead_search_ucb_rails_admin_users_path
-        self.ldap_search_url = options.delete(:ldap_search_url) || ldap_search_ucb_rails_admin_users_path(format: :json)
-        self.ldap_search = options.delete(:ldap_search) != false # this option gives an icon to do a more rigitized lookup by first/last name
+        self.ldap_search_url = options.has_key?(:ldap_search_url) ? options.delete(:ldap_search_url) : ldap_search_ucb_rails_admin_users_path(format: :json)
+        self.ldap_modal_search = options.delete(:ldap_modal_search) || false # this option gives an icon to do a more rigitized lookup by first/last name
         validate_options
       end
       
@@ -108,7 +108,7 @@ module UcbRails
         return if options.blank?
         
         msg = "Unknown lps_typeahead_search_field option(s): #{options.keys.map(&:inspect).join(', ')}. "
-        msg << "Did you mean one of :name, :required, :label, :value, :placeholder, :hint, :ldap_search, :ldap_search_url, :result_link_text, :result_link_class, :uid_dom_id, :typeahead_url"
+        msg << "Did you mean one of :name, :required, :label, :value, :placeholder, :hint, :ldap_modal_search, :ldap_search_url, :result_link_text, :result_link_class, :uid_dom_id, :typeahead_url"
         raise ArgumentError, msg
       end
       
