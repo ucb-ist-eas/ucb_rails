@@ -31,22 +31,6 @@ $(function() {
 
     asyncResults(names);
   } 
-  
-  function asyncTypeaheadSource(query, url, asyncResults) {
-    if(typeof(url) === 'undefined') {
-      return;
-    }
-
-    $.ajax({
-      url: url, 
-      type: 'get', 
-      data: {query: query},
-      dataType: 'json',
-      success: function(uid_name_json) {
-        loadTypeahead(uid_name_json, asyncResults);
-      }
-    });
-  }
 
   var typeaheadCtrl = $('.typeahead-lps-search').typeahead({
     minLength: 2,
@@ -54,24 +38,43 @@ $(function() {
     highlight: true
   },
   {
-    name: 'local-dataset',
+    display: 'first_last_name',
     source: function(query, syncResults, asyncResults) {
-      var url  = this.$el.parents(".twitter-typeahead").find(".typeahead-lps-search").data('typeaheadUrl');
-      asyncTypeaheadSource(query, url, asyncResults);      
+      var url = this.$el.parents(".twitter-typeahead").find(".typeahead-lps-search").data('typeaheadUrl')
+      var localSrc = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        remote: {
+          url: url+"?query=%QUERY",
+          wildcard: '%QUERY'
+        }
+      });
+      localSrc.search(query, syncResults, asyncResults);
     }
   },
   {
-    name: 'ldap-dataset',
+    display: function(obj) { return obj.first_name + " " + obj.last_name },
     source: function(query, syncResults, asyncResults) {
-      var url  = this.$el.parents(".twitter-typeahead").find(".typeahead-lps-search").data('ldapSearchUrl');
-      asyncTypeaheadSource(query, url, asyncResults);
+      var url = this.$el.parents(".twitter-typeahead").find(".typeahead-lps-search").data('ldapSearchUrl');
+      var ldapSrc = new Bloodhound({
+        datumTokenizer: Bloodhound.tokenizers.whitespace,
+        queryTokenizer: Bloodhound.tokenizers.whitespace,
+        remote: {
+          url: url+"?query=%QUERY",
+          wildcard: '%QUERY'
+        }
+      });
+      ldapSrc.search(query, syncResults, asyncResults);      
     }
   })
   .on('typeahead:asyncrequest', function(){
     $(this).addClass('loading');
   })
-  .on('typeahead:asynccancel typeahead:asyncreceive', function(){
+  .on('typeahead:asynccancel typeahead:render', function(){
     $(this).removeClass('loading');
+  })
+  .on('typeahead:select', function(evt, suggestion) {
+    $("#"+$(evt.target).data('uid-dom-id')).val(suggestion.uid);
   });  
 
 
