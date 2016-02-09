@@ -47,6 +47,7 @@ $(function() {
       var localSrc = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.whitespace,
         queryTokenizer: Bloodhound.tokenizers.whitespace,
+        identify: function(obj) { return obj.uid; },
         remote: {
           url: url+"?query=%QUERY",
           wildcard: '%QUERY'
@@ -57,10 +58,6 @@ $(function() {
   },
   {
     display: function(obj) { return obj.first_name + " " + obj.last_name },
-    dupChecker: function(arg1, arg2) {
-      debugger
-      console.log('ha');
-    },
     source: function(query, syncResults, asyncResults) {
       var url = this.$el.parents(".twitter-typeahead").find(".typeahead-lps-search").data('ldapSearchUrl');
       if(!url)
@@ -69,10 +66,7 @@ $(function() {
       var ldapSrc = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.whitespace,
         queryTokenizer: Bloodhound.tokenizers.whitespace,
-        dupChecker: function(arg1, arg2) {
-          debugger
-          console.log('hi');
-        },
+        identify: function(obj) { return obj.uid; },      
         remote: {
           url: url+"?query=%QUERY",
           wildcard: '%QUERY'
