@@ -38,6 +38,7 @@ Gem::Specification.new do |s|
   s.add_dependency 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
   s.add_dependency 'sweetalert-rails', '~> 0.5.0'
   s.add_dependency 'sweet-alert-confirm', '~> 0.4.1'
+  s.add_dependency 'gon', '~> 6.0.0'
 
   s.add_dependency 'responders', '~> 2.0'  
 
