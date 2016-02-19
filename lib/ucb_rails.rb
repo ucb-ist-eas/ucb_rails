@@ -26,6 +26,7 @@ require 'ucb_ldap'
 require 'rails_view_helpers'
 require 'user_announcements'
 require 'bootstrap-view-helpers'
+require 'gon'
   
 module UcbRails
   
