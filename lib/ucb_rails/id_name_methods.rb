@@ -16,14 +16,6 @@ module UcbRails::IdNameMethods
     self.class == other.class && self.id == other.id
   end
 
-  def self.as_json
-    self.constants.inject({}) do |map, c|
-      const_value = self.const_get(c)
-      map[c.to_s.downcase] = const_value if const_value.respond_to?(:integer?) && const_value.integer? && DATA.detect { |pair| pair[0] == const_value }
-      map
-    end
-  end
-
   module ClassMethods
     
     def all
@@ -62,7 +54,15 @@ module UcbRails::IdNameMethods
       all
         .map { |e| [e.id, e.name] }
     end
-    
+
+    def const_map
+      self.constants.inject({}) do |map, c|
+        const_value = self.const_get(c)
+        map[c.to_s.downcase] = const_value if const_value.respond_to?(:integer?) && const_value.integer? && self::DATA.detect { |pair| pair[0] == const_value }
+        map
+      end
+    end    
+
     private
     
     def verify_data_constant
