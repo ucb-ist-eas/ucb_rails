@@ -1,6 +1,7 @@
 require "ucb_rails/engine"
 require 'ucb_rails/log_tagger'
 require 'ucb_rails/id_name_methods'
+require 'ucb_rails/date_month_year'
 
 require 'haml'
 require 'haml-rails'
