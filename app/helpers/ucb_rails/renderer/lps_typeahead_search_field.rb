@@ -99,7 +99,7 @@ module UcbRails
         self.result_link_class = options.delete(:result_link_class) || 'lps-typeahead-item'
         self.uid_dom_id = options.delete(:uid_dom_id) || 'uid'
         self.typeahead_url = options.delete(:typeahead_url) || typeahead_search_ucb_rails_admin_users_path
-        self.ldap_search_url = options.has_key?(:ldap_search_url) ? options.delete(:ldap_search_url) : ldap_search_ucb_rails_admin_users_path(format: :json)
+        self.ldap_search_url = options.has_key?(:ldap_search_url) ? options.delete(:ldap_search_url) : nil#ldap_search_ucb_rails_admin_users_path(format: :json)
         self.ldap_modal_search = options.delete(:ldap_modal_search) || false # this option gives an icon to do a more rigitized lookup by first/last name
         validate_options
       end
