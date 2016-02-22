@@ -13,4 +13,8 @@ class DateYyyyInput < DateBaseInput
   def date_format
     "YYYY"
   end  
+
+  def strftime_format
+    "%Y"
+  end  
 end
