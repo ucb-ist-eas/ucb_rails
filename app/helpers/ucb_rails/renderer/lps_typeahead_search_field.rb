@@ -24,6 +24,7 @@ module UcbRails
       private
       
       def label_html
+        return "".html_safe unless label
         required_marker = required ? content_tag(:abbr, '*', title: 'required') + ' ' : ''
         label_classes = 'control-label'
         label_classes << ' required' if required
@@ -90,7 +91,7 @@ module UcbRails
       
       def parse_options
         self.name = options.delete(:name) || 'person_search'
-        self.label = options.delete(:label) || 'User'
+        self.label = options.delete(:label)
         self.required = options.delete(:required)
         self.value = options.delete(:value) || params[name]
         self.placeholder = options.delete(:placeholder) || 'Type name to search'
