@@ -15,7 +15,8 @@ Rails.application.routes.draw do
 
   namespace :ucb_rails do
     get '/ldap_person_search' => 'ldap_person_search#search', :as => :ldap_person_search
-    
+    get '/person_search' => 'users#search', :as => :person_search
+
     namespace :admin do
       resources :announcements
       get 'configuration' => 'configuration#index'
