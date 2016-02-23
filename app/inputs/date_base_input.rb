@@ -10,9 +10,11 @@ class DateBaseInput < SimpleForm::Inputs::Base
     input_html_options[:value] = object.send(attribute_name)
 
     value = object.send(attribute_name)
-    value = strftime_format.present? ? value.strftime(strftime_format) : value.to_formatted_s
-    input_html_options[:value] = value
-    
+    if value.present? 
+      value = strftime_format.present? ? value.strftime(strftime_format) : value.to_formatted_s
+      input_html_options[:value] = value
+    end
+        
     template.content_tag(:div, class: 'date') do
       # template.concat @builder.label(attribute_name, class: 'control-label')
       template.content_tag(:div, class: 'input-group date') do 
