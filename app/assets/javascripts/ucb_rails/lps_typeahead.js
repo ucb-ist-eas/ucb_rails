@@ -1,14 +1,23 @@
 $(function() {
-  
+  var typeaheadCtrl;
+
   // prevent browser autocomplete from competing with Bootstrap typeahead
   $('.typeahead-lps-search').attr('autocomplete', 'off');
   
   // typing in search field clears uid field
-  $('.typeahead-lps-search').keyup(function() {
-    var uidSelector = '#' + $(this).data('uid-dom-id');
-    $(uidSelector).val('');
+  $('.typeahead-lps-search').keyup(function(evt) {
+    if(evt.which != 13 && evt.which != 9) {
+      var uidSelector = '#' + $(this).data('uid-dom-id');
+      $(uidSelector).val('');      
+    }
   });
-  
+
+  $('.typeahead-lps-search').keydown(function(evt) {
+    if(evt.which == 13) {
+      evt.preventDefault();
+    } 
+  });
+
   // default handler for ldap search result link when used with typeahead
   $(document).on('click', 'a.lps-typeahead-item', function (e) {
     var link = $(this);
@@ -32,10 +41,11 @@ $(function() {
     asyncResults(names);
   } 
 
-  var typeaheadCtrl = $('.typeahead-lps-search').typeahead({
+  typeaheadCtrl = $('.typeahead-lps-search').typeahead({
     minLength: 2,
     delay: 250,
-    highlight: true
+    highlight: true,
+    autoselect: true
   },
   {
     display: 'first_last_name',
@@ -83,7 +93,9 @@ $(function() {
   })
   .on('typeahead:select', function(evt, suggestion) {
     $("#"+$(evt.target).data('uid-dom-id')).val(suggestion.uid);
-  });  
+  }).on('typeahead:autocomplete', function(evt, suggestion) {
+    console.log('autocomplete')
+  })  
 
 
 })
