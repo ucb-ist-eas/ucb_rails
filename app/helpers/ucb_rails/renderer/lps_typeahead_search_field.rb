@@ -61,7 +61,8 @@ module UcbRails
           autocomplete: 'off',
           class: 'typeahead-lps-search typeahead form-control',
           placeholder: placeholder,
-          data: text_field_data_attributes
+          data: text_field_data_attributes,
+          id: "person_search_"+text_field_data_attributes[:uid_dom_id].to_s
         })
       end
       
