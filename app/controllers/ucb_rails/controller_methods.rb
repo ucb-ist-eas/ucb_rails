@@ -59,7 +59,7 @@ module UcbRails::ControllerMethods
   end
 
   def ensure_admin_user
-    admin? or redirect_to not_authorized_path
+    admin? or not_authorized!
   end
   
   # Before filter that redirects redirects to +login_url+ unless user is logged in
@@ -68,7 +68,7 @@ module UcbRails::ControllerMethods
   def ensure_authenticated_user
     unless session.has_key?(:uid)
       session[:original_url] = request.env['REQUEST_URI']
-      redirect_to login_url
+      not_authorized!
     end
   end
 
@@ -81,5 +81,15 @@ module UcbRails::ControllerMethods
   rescue NameError
     raise "Could not find UcbRails user_session_manager: #{klass}"
   end
-  
+
+  def not_authorized!
+    render(:text => "Not Authorized", :status => 401)
+    return false
+  end
+
+  def not_authorized_unless(condition)
+    unless condition
+      not_authorized!
+    end
+  end   
 end
