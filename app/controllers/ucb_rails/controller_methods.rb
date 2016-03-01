@@ -68,7 +68,7 @@ module UcbRails::ControllerMethods
   def ensure_authenticated_user
     unless session.has_key?(:uid)
       session[:original_url] = request.env['REQUEST_URI']
-      not_authorized!
+      redirect_to login_url
     end
   end
 
