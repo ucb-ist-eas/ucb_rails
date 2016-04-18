@@ -9,6 +9,9 @@
 // @import 'nprogress-bootstrap';
 @import 'user_announcements';
 @import 'bootstrap-view-helpers';
+
+@import 'lib/select2'
+
 @import 'ucb_rails/common';
 @import 'ucb_rails/branding';
 @import 'ucb_rails/typography';
@@ -20,4 +23,3 @@
 @import 'ucb_rails/typeahead';
 @import 'ucb_rails/bootstrap-view-helpers';
 @import 'ucb_rails/datetimepicker';
-
