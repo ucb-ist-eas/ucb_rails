@@ -5,6 +5,7 @@ module UcbRails
     class LpsTypeaheadSearchField < Base
       
       attr_accessor :name, :label, :required, :value, :placeholder, :hint, :result_link_text, :result_link_class, :uid_dom_id, :typeahead_url, :ldap_search_url, :ldap_modal_search
+      attr_accessor :first_last_name_column
       
       def initialize(template, options={})
         super
@@ -70,7 +71,8 @@ module UcbRails
         data_attributes = {
           uid_dom_id: uid_dom_id,
           typeahead_url: self.typeahead_url,
-          ldap_search_url: self.ldap_search_url
+          ldap_search_url: self.ldap_search_url,
+          first_last_name_column: self.first_last_name_column
         }
         return data_attributes
       end
@@ -103,6 +105,7 @@ module UcbRails
         self.typeahead_url = options.delete(:typeahead_url) || ucb_rails_person_search_path
         self.ldap_search_url = options.has_key?(:ldap_search_url) ? options.delete(:ldap_search_url) : nil#ldap_search_ucb_rails_admin_users_path(format: :json)
         self.ldap_modal_search = options.delete(:ldap_modal_search) || false # this option gives an icon to do a more rigitized lookup by first/last name
+        self.first_last_name_column = options.delete(:first_last_name_column) || :first_last_name
         validate_options
       end
       
