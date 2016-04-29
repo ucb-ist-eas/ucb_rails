@@ -50,7 +50,10 @@ $(function() {
   {
     display: 'first_last_name',
     source: function(query, syncResults, asyncResults) {
-      var url = this.$el.parents(".twitter-typeahead").find(".typeahead-lps-search").data('typeaheadUrl')
+      var $typeaheadElement = this.$el.parents(".twitter-typeahead").find(".typeahead-lps-search");
+      var url = $typeaheadElement.data('typeaheadUrl');
+      var first_last_name_column = $typeaheadElement.data('firstLastNameColumn');
+      
       if(!url)
         return;
 
@@ -59,7 +62,7 @@ $(function() {
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         identify: function(obj) { return obj.uid; },
         remote: {
-          url: url+"?query=%QUERY",
+          url: url+"?query=%QUERY&first_last_name_column="+first_last_name_column,
           wildcard: '%QUERY'
         }
       });
