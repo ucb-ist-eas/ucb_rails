@@ -80,7 +80,7 @@ module UcbRails
 
     private
     def build_wheres(tokens)
-      if defined?(ActiveRecord::ConnectionAdapters::OracleEnhancedAdapter) && ActiveRecord::Base.connection.kind_of?(ActiveRecord::ConnectionAdapters::OracleEnhancedAdapter)      
+      if defined?(ActiveRecord::ConnectionAdapters::OracleEnhancedAdapter) && ActiveRecord::Base.connection.kind_of?(ActiveRecord::ConnectionAdapters::OracleEnhancedAdapter)
         tokens.map { |e| "REGEXP_LIKE(#{search_column}, ?, 'i' )" }.join(' and ')
       elsif defined?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter) && ActiveRecord::Base.connection.kind_of?(ActiveRecord::ConnectionAdapters::PostgreSQLAdapter)
         tokens.map { |e| "#{search_column} ILIKE ?" }.join(' and ')
@@ -90,7 +90,7 @@ module UcbRails
     end
 
     def build_values(tokens)
-      if defined?(ActiveRecord::ConnectionAdapters::OracleEnhancedAdapter) && ActiveRecord::Base.connection.kind_of?(ActiveRecord::ConnectionAdapters::OracleEnhancedAdapter)      
+      if defined?(ActiveRecord::ConnectionAdapters::OracleEnhancedAdapter) && ActiveRecord::Base.connection.kind_of?(ActiveRecord::ConnectionAdapters::OracleEnhancedAdapter)
         tokens.map { |e| "#{e}" }      
       else
         tokens.map { |e| "%#{e}%" }      
