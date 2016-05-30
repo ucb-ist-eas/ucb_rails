@@ -21,14 +21,14 @@ class UcbRails::Admin::UsersController < UcbRails::Admin::BaseController
       flash[:warning] = "User already exists"
     else
       user = UcbRails::UserLdapService.create_user_from_uid(uid)
-      flash[:notice] = 'Record created'#msg_created(user)
+      flash[:notice] = 'Record created'
     end
-    # render :js => %(window.location.href = '#{ucb_rails_admin_user_path}')
+
     render :js => %(window.location.href = '#{edit_ucb_rails_admin_user_path(user)}')
   end
   
   def update
-    if @user.update_attributes(params.fetch(:ucb_rails_user), :without_protection => true)
+    if @user.update_attributes(ucb_rails_user_params)
       redirect_to(ucb_rails_admin_users_path, notice: 'Record updated')
     else
       render("edit")
@@ -37,7 +37,7 @@ class UcbRails::Admin::UsersController < UcbRails::Admin::BaseController
   
   def destroy
     if @user.destroy
-      flash[:notice] = 'Record deleted' #msg_destroyed(@user)
+      flash[:notice] = 'Record deleted'
     else
       flash[:error] = @user.errors[:base].first
     end
@@ -73,17 +73,33 @@ class UcbRails::Admin::UsersController < UcbRails::Admin::BaseController
     render json: uta.results(params.fetch(:query))
   end
 
-  def toggle_admin
-    admin? ? current_user.update_column(:admin, false) : current_user.update_column(:admin, true)
-    redirect_to root_path
-  end
-  
   def omni_typeahead_search
     uta = UcbRails::OmniUserTypeahead.new
     render json: uta.results(params.fetch(:query))
   end
 
+  def toggle_admin
+    admin? ? current_user.update_column(:admin, false) : current_user.update_column(:admin, true)
+    redirect_to root_path
+  end
+
   private
+
+  def ucb_rails_user_params
+    params.require(:ucb_rails_user).permit(
+      :admin,
+      :inactive,
+      :first_name,
+      :last_name,
+      :email,
+      :alternate_email,
+      :phone,
+      :last_request_at,
+      :last_logout_at,
+      :last_login_at,
+      :uid
+    )
+  end
 
   def find_user
     @user ||= UcbRails::User.find(params.fetch(:id))

@@ -14,6 +14,7 @@ class UcbRails::UserLdapService
 
       UcbRails::User.create! do |u|
         u.uid = ldap_entry.uid
+        u.employee_id = ldap_entry.employee_id if u.respond_to?(:employee_id=)
         u.first_name = ldap_entry.first_name
         u.last_name = ldap_entry.last_name
         u.email = ldap_entry.email
@@ -33,6 +34,7 @@ class UcbRails::UserLdapService
       UcbRails.logger.debug "update_user_from_ldap_entry #{ldap_entry.uid}"
 
       UcbRails::User.find_by_uid!(ldap_entry.uid).tap do |user|
+        user.employee_id = ldap_entry.employee_id if user.respond_to?(:employee_id=)
         user.first_name = ldap_entry.first_name
         user.last_name = ldap_entry.last_name
         user.email = ldap_entry.email
