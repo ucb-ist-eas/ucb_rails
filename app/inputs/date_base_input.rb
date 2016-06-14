@@ -1,22 +1,17 @@
 class DateBaseInput < SimpleForm::Inputs::Base
-  def input
+
+  def input(wrapper_options = nil)
     options[:hint] = hint_text unless options.has_key?(:hint)
     input_html_options[:class] << date_picker_class
     input_html_options[:class] << options[:class]
     input_html_options[:class] << "form-control"
 
     input_html_options[:data] ||= {} 
-    input_html_options[:data]["date-format"] ||= date_format if date_format.present?
-    input_html_options[:value] = object.send(attribute_name)
 
-    value = object.send(attribute_name)
-    if value.present? 
-      value = strftime_format.present? ? value.strftime(strftime_format) : value.to_formatted_s
-      input_html_options[:value] = value
-    end
+    # Set the date format for JS helper. Don't set the value, though - assume that the user will provide a value in the same format
+    input_html_options[:data]["date-format"] ||= date_format if date_format.present?
         
     template.content_tag(:div, class: 'date') do
-      # template.concat @builder.label(attribute_name, class: 'control-label')
       template.content_tag(:div, class: 'input-group date') do 
         template.concat @builder.text_field(attribute_name, input_html_options)
         template.concat template.content_tag(:span, template.content_tag(:i, "", class: "glyphicon glyphicon-th"), class: 'input-group-addon')

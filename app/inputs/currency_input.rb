@@ -1,6 +1,6 @@
 class CurrencyInput < SimpleForm::Inputs::Base
   
-  def input
+  def input(wrapper_options = nil)
     options[:hint] = 'Numbers only, e.g., 50000' unless options.has_key?(:hint)
     input_html_options[:class] << 'money'
     
