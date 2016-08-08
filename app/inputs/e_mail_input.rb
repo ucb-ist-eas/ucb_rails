@@ -1,7 +1,7 @@
 # Wanted to have class of EmailInput, but couldn't get simple_form to recognize.
 class EMailInput < SimpleForm::Inputs::Base
 
-  def input
+  def input(wrapper_options = nil)
     template.content_tag(:div, class: 'input-prepend') do
       template.safe_join([
         template.content_tag(:span, template.icon_email, class: 'add-on') ,
