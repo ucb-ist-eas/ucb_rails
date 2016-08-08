@@ -88,11 +88,11 @@ class UcbRails::BaseDatatable
   end
 
   def per
-    params[:pageLength].to_i > 0 ? params[:pageLength].to_i : 10
+    params[:length].to_i > 0 ? params[:length].to_i : 10
   end
 
   def page
-    params[:displayStart].to_i/per + 1
+    params[:start].to_i/per + 1
   end
   
   def order
