@@ -3,8 +3,6 @@ class UcbRails::User < ActiveRecord::Base
 
   # attr_accessible :uid, :first_name, :last_name, :inactive
 
-  before_validation :set_first_last_name
-
   # Overridden by application
   def roles
     []
@@ -42,12 +40,8 @@ class UcbRails::User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
-  private
-
-  def set_first_last_name
-    self.first_last_name = [first_name, last_name]
-      .select { |n| n.present? }
-      .join(' ')
-      .presence
+  def uid
+    ldap_uid
   end
+
 end

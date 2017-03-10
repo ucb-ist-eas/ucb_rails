@@ -10,6 +10,7 @@ module UcbRails::LdapPerson
     attribute :uid
     attribute :calnet_id
     attribute :employee_id
+    attribute :student_id
     attribute :first_name
     attribute :last_name
     attribute :email
@@ -43,13 +44,14 @@ module UcbRails::LdapPerson
           :uid => ldap_entry.uid,
           :calnet_id => ldap_entry.berkeleyedukerberosprincipalstring.first,
           :employee_id => ldap_entry.employeenumber,
+          :student_id => ldap_entry.attributes["student_id"],
           :first_name => ldap_entry.givenname.first,
           :last_name => ldap_entry.sn.first,
           :email => ldap_entry.mail.first,
           :phone => ldap_entry.phone,
           :departments => ldap_entry.berkeleyeduunithrdeptname,
           :affiliations => ldap_entry.berkeleyeduaffiliations,
-          :affiliate_id => ldap_entry.berkeleyeduaffid,
+          :affiliate_id => ldap_entry.berkeleyeduaffid.first,
           :inactive => ldap_entry.expired? || false
         )
       end

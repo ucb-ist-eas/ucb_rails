@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150318234744) do
+ActiveRecord::Schema.define(version: 20170308547654) do
 
   create_table "announcements", force: :cascade do |t|
     t.text     "message"
@@ -36,25 +36,30 @@ ActiveRecord::Schema.define(version: 20150318234744) do
   add_index "hidden_announcements", ["user_id"], name: "index_hidden_announcements_on_user_id"
 
   create_table "users", force: :cascade do |t|
-    t.string   "uid",             limit: 10,                  null: false
-    t.string   "first_name",      limit: 60
-    t.string   "last_name",       limit: 60
-    t.string   "first_last_name", limit: 100
-    t.string   "email",           limit: 256
-    t.string   "phone",           limit: 30
-    t.boolean  "inactive",                    default: false, null: false
-    t.boolean  "admin",                       default: false, null: false
+    t.string   "ldap_uid",                             null: false
+    t.string   "employee_id"
+    t.integer  "affiliate_id"
+    t.integer  "student_id"
+    t.boolean  "superuser_flag",       default: false, null: false
+    t.boolean  "inactive_flag",        default: false, null: false
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "alternate_first_name"
+    t.string   "alternate_last_name"
+    t.string   "alternate_email"
+    t.boolean  "alternate_flag",       default: false, null: false
     t.datetime "last_login_at"
-    t.datetime "last_request_at"
-    t.datetime "last_logout_at"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "alternate_email", limit: 255
   end
 
+  add_index "users", ["affiliate_id"], name: "index_users_on_affiliate_id", unique: true
   add_index "users", ["email"], name: "index_users_on_email"
+  add_index "users", ["employee_id"], name: "index_users_on_employee_id", unique: true
   add_index "users", ["first_name"], name: "index_users_on_first_name"
   add_index "users", ["last_name"], name: "index_users_on_last_name"
-  add_index "users", ["uid"], name: "index_users_on_uid", unique: true
+  add_index "users", ["ldap_uid"], name: "index_users_on_ldap_uid", unique: true
+  add_index "users", ["student_id"], name: "index_users_on_student_id", unique: true
 
 end

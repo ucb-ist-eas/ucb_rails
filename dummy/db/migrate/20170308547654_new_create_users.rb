@@ -1,4 +1,6 @@
-class CreateUsers < ActiveRecord::Migration
+# this is substantially different from the original migration, and will
+# overwrite the existing users table
+class NewCreateUsers < ActiveRecord::Migration
   def change
     create_table :users, force: true do |t|
       t.string :ldap_uid, null: false

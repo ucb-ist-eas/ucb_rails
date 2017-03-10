@@ -57,7 +57,7 @@ module UcbRails::LdapPerson
 
     def build_filter(attrs, options={})
       operator = options[:operator] || :&
-      filter_parts = attrs.map { |k, values| 
+      filter_parts = attrs.map { |k, values|
         Array(values).map{|v| build_filter_part(k, v) }
       }.flatten
       filter = filter_parts.inject { |accum, filter| accum.send(operator, filter) }
