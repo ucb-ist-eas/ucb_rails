@@ -10,9 +10,6 @@ gem 'ucb_rails_ci', github: 'ucb-ist-eas/ucb_rails_ci'
 
 # jquery-rails is used by the dummy application
 gem "jquery-rails"
-#gem 'rails_view_helpers', path: "../rails_view_helpers"
-#gem 'user_announcements', path: "../user_announcements"
-#gem 'bootstrap-view-helpers', path: "../bootstrap-view-helpers"
 
 gem 'bootstrap-view-helpers', github: "ucb-ist-eas/bootstrap-view-helpers", branch: "rails4"
 gem 'rails_view_helpers', github: "ucb-ist-eas/rails_view_helpers", branch: "rails4"

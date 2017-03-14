@@ -11,7 +11,7 @@ describe UcbRails::Configuration::Email do
 
   describe '.new' do
     it "sets config" do
-      klass.new({'foo' => 'bar'}).hash.should == {'foo' => 'bar'}
+      expect(klass.new({'foo' => 'bar'}).hash).to eq({'foo' => 'bar'})
     end
 
     it "requires a hash" do
@@ -23,19 +23,19 @@ describe UcbRails::Configuration::Email do
   describe 'delivery_method' do
     it "defaults to smtp" do
       klass.new({})
-      amb.delivery_method.should == :smtp
+      expect(amb.delivery_method).to eq(:smtp)
     end
 
     it "can be set" do
       klass.new({'delivery_method' => 'sendmail'})
-      amb.delivery_method.should == :sendmail
+      expect(amb.delivery_method).to eq(:sendmail)
     end
   end
 
   describe 'default' do
     it "adds to default" do
       klass.new({'default' => {'foo' => 'bar'}})
-      amb.default['foo'].should == 'bar'
+      expect(amb.default['foo']).to eq('bar')
     end
   end
 
@@ -43,20 +43,20 @@ describe UcbRails::Configuration::Email do
     it "sets default_url_options" do
       config = {'default_url_options' => { :host => 'localhost' } }
       klass.new(config)
-      amb.default_url_options.should == config['default_url_options']
+      expect(amb.default_url_options).to eq(config['default_url_options'])
     end
   end
 
   describe 'raise_delivery_errors' do
     it "defaults to true" do
       klass.new({})
-      amb.raise_delivery_errors.should be_truthy
+      expect(amb.raise_delivery_errors).to be_truthy
     end
 
     it "can be set" do
       config = { 'raise_delivery_errors' => false}
       klass.new(config)
-      amb.raise_delivery_errors.should be_falsey
+      expect(amb.raise_delivery_errors).to be_falsey
     end
   end
 
@@ -64,7 +64,7 @@ describe UcbRails::Configuration::Email do
     it "sets send_settings, symbolizes keys" do
       config = {'sendmail_settings' => { 'location' => '/app/bin/sendmail'} }
       klass.new(config)
-      amb.sendmail_settings.should == { location: '/app/bin/sendmail'}
+      expect(amb.sendmail_settings).to eq({ location: '/app/bin/sendmail'})
     end
   end
 
@@ -72,26 +72,26 @@ describe UcbRails::Configuration::Email do
     it "sets smtp_settings, symbolizes keys" do
       config = {'smtp_settings' => { 'port' => 587, 'domain' => 'gmail.com'}}
       klass.new(config)
-      amb.smtp_settings.should == { port: 587, domain: 'gmail.com'}
+      expect(amb.smtp_settings).to eq({ port: 587, domain: 'gmail.com'})
     end
   end
 
   describe 'subject_prefix' do
     it "defaults to ''" do
       klass.new({})
-      UcbRails[:email_subject_prefix].should == ''
+      expect(UcbRails[:email_subject_prefix]).to eq('')
     end
 
     it "can be set" do
       config = {'subject_prefix' => '[MyApp]'}
       klass.new(config)
-      UcbRails[:email_subject_prefix].should == '[MyApp]'
+      expect(UcbRails[:email_subject_prefix]).to eq('[MyApp]')
     end
 
     it "substitues Rails env" do
       config = {'subject_prefix' => '[MyApp {env}]'}
       klass.new(config)
-      UcbRails[:email_subject_prefix].should == '[MyApp TST]'
+      expect(UcbRails[:email_subject_prefix]).to eq('[MyApp TST]')
     end
   end
 end

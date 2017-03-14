@@ -9,18 +9,18 @@ describe UcbRails::UserSessionManager::InPeopleOuAddToUsersTable do
     describe 'in People OU' do
       it "in User table" do
         user
-        manager.login("1").should == UcbRails::User.last
+        expect(manager.login("1")).to eq(UcbRails::User.last)
       end
 
       it 'not in User table' do
-        manager.login("1").should == UcbRails::User.last
+        expect(manager.login("1")).to eq(UcbRails::User.last)
       end
     end
 
     describe 'not in People OU' do
       it "always false" do
         UcbRails::User.create!(ldap_uid: 100)
-        manager.login("100").should be_falsey
+        expect(manager.login("100")).to be_falsey
       end
     end
 
@@ -29,11 +29,11 @@ describe UcbRails::UserSessionManager::InPeopleOuAddToUsersTable do
   describe '#current_user' do
     it "returns user" do
       user
-      manager.current_user("1").should == user
+      expect(manager.current_user("1")).to eq(user)
     end
 
     it "handles nil" do
-      manager.current_user(nil).should be_nil
+      expect(manager.current_user(nil)).to be_nil
     end
   end
 

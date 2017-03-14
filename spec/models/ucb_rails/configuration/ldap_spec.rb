@@ -6,27 +6,27 @@ describe UcbRails::Configuration::Ldap do
 
   context 'no configuration passed' do
     let(:config) { nil }
-    
+
     it "does not attempt to authenticate" do
-      ldap.should_not_receive(:authenticate)
+      expect(ldap).to_not receive(:authenticate)
       klass.configure(config)
     end
 
     context 'not production' do
       it "sets test host" do
         klass.configure(config)
-        ldap.host.should == 'nds-test.berkeley.edu'
-        UCB::LDAP::Person.include_test_entries?.should be_truthy
+        expect(ldap.host).to eq('nds-test.berkeley.edu')
+        expect(UCB::LDAP::Person.include_test_entries?).to be_truthy
       end
     end
 
     context 'production' do
-      before { RailsEnvironment.stub rails_env: 'production' }
-      
+      before { allow(RailsEnvironment).to receive(:rails_env) { 'production' } }
+
       it "sets production host" do
         klass.configure(config)
-        ldap.host.should == 'nds.berkeley.edu'
-        UCB::LDAP::Person.include_test_entries?.should be_falsey
+        expect(ldap.host).to eq('nds.berkeley.edu')
+        expect(UCB::LDAP::Person.include_test_entries?).to be_falsey
       end
     end
 
@@ -34,31 +34,31 @@ describe UcbRails::Configuration::Ldap do
 
   context 'configuration passed' do
     let(:config) { {'host' => 'HOST', 'username' => 'USERNAME', 'password' => 'PASSWORD', 'include_test_entries' => true } }
-    before { ldap.stub :authenticate }
-    
+    before { allow(ldap).to receive(:authenticate) }
+
     it "authenticates" do
-      ldap.should_receive(:authenticate).with('USERNAME', 'PASSWORD')
+      expect(ldap).to receive(:authenticate).with('USERNAME', 'PASSWORD')
       klass.configure(config)
     end
 
     context 'not production' do
       it "sets test host" do
         klass.configure(config)
-        ldap.host.should == 'HOST'
-        UCB::LDAP::Person.include_test_entries?.should be_truthy
+        expect(ldap.host).to eq('HOST')
+        expect(UCB::LDAP::Person.include_test_entries?).to be_truthy
       end
     end
 
     context 'production' do
-      before { RailsEnvironment.stub rails_env: 'production' }
-      
+      before { allow(RailsEnvironment).to receive(:rails_env) { 'production' } }
+
       it "sets production host" do
         klass.configure(config)
-        ldap.host.should == 'HOST'
-        UCB::LDAP::Person.include_test_entries?.should be_truthy
+        expect(ldap.host).to eq('HOST')
+        expect(UCB::LDAP::Person.include_test_entries?).to be_truthy
       end
     end
 
   end
-  
+
 end

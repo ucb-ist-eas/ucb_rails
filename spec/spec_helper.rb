@@ -1,6 +1,11 @@
 require 'rubygems'
 require 'spork'
 
+# this is a hack to deal with some errant autoload behavior that was causing
+# an "unable to autoload constant" error when running specs - we might be able
+# to get rid of this in future versions
+require File.expand_path("../../app/models/ucb_rails/ldap_person/finder", __FILE__)
+
 Spork.prefork do
   ENV["RAILS_ENV"] ||= 'test'
 
@@ -8,20 +13,10 @@ Spork.prefork do
   require File.expand_path("../../dummy/config/environment", __FILE__)
   require 'rspec/rails'
 
-
-  require 'rspec/autorun'
   require 'database_cleaner'
   require 'capybara/rspec'
-  require 'shoulda-matchers'
 
-  Shoulda::Matchers.configure do |config|
-    config.integrate do |with|
-      with.test_framework :rspec
-      with.library :rails
-    end
-  end
-
-  require 'capybara/webkit'# if ENV['WEBKIT']
+  require 'capybara/webkit'
   Capybara.javascript_driver = :webkit
 
 
@@ -34,11 +29,11 @@ Spork.prefork do
     config.use_transactional_fixtures = true
     config.fixture_path = "#{::Rails.root}/spec/fixtures"
     config.infer_base_class_for_anonymous_controllers = false
-    config.treat_symbols_as_metadata_keys_with_true_values = true
     config.filter_run focus: true
     config.order = "random"
     config.run_all_when_everything_filtered = true
     config.infer_spec_type_from_file_location!
+    config.raise_errors_for_deprecations!
 
     config.before(:each) do
       DatabaseCleaner.strategy = :truncation #example.metadata[:js] ? :truncation : :transaction

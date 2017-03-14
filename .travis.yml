@@ -3,6 +3,10 @@ rvm:
   - "2.3.3"
   # - jruby-19mode # JRuby in 1.9 mode
   # - rbx-19mode
+branches:
+  only:
+  - v2
+
 # uncomment this line if your project needs to run something other than `rake`:
 script:
   - RAILS_ENV=test bundle exec rake db:migrate --trace

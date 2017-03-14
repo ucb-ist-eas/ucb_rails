@@ -5,66 +5,63 @@ describe 'UcbRails::Renderer::LdapPersonSearchResultLink' do
   ActionView::Base.send(:include, UcbRails::ExtractableHelper)
   ActionView::Base.send(:include, Bootstrap::ButtonHelper)
   ActionView::Base.send(:include, Bootstrap::CommonHelper)
-  
+
   let(:klass) { UcbRails::Renderer::LdapPersonSearchResultLink }
   let(:entry) { double('entry', uid: '123', first_name: 'Art', last_name: 'Andrews', email: 'aa@example.com') }
   let(:template) do
     ActionView::Base.new.tap do |t|
-      t.stub(params: {})
+      allow(t).to receive(:params) { {} }
     end
   end
-  
+
   it "defaults" do
     html = klass.new(template, entry).html
     link = Capybara.string(html).find('a.result-link.result-link-default')
-    
-    link.text.should == 'Add'
-    link['href'].should == '#'
-    link['data-method'].should == 'get'
-    link['data-uid'].should == '123'
-    link['data-first-name'].should == 'Art'
-    link['data-last-name'].should == 'Andrews'
-    link['data-email'].should == 'aa@example.com'
+
+    expect(link.text).to eq('Add')
+    expect(link['href']).to eq('#')
+    expect(link['data-method']).to eq('get')
+    expect(link['data-uid']).to eq('123')
+    expect(link['data-first-name']).to eq('Art')
+    expect(link['data-last-name']).to eq('Andrews')
+    expect(link['data-email']).to eq('aa@example.com')
   end
-  
+
   it "url" do
-    template.stub(params: {"result-link-url" => '/url'})
+    allow(template).to receive(:params) { {"result-link-url" => '/url'} }
     html = klass.new(template, entry).html
     link = Capybara.string(html).find('a.result-link')
-    
-    link['href'].should == "/url?first_name=Art&last_name=Andrews&uid=123"
-    link['data-remote'].should == 'true'
+
+    expect(link['href']).to eq("/url?first_name=Art&last_name=Andrews&uid=123")
+    expect(link['data-remote']).to eq('true')
   end
 
   it "url w/param, method" do
-    template.stub(params: {"result-link-url" => '/url?foo=bar', 'result-link-http-method' => :post})
+    allow(template).to receive(:params) {
+      {"result-link-url" => '/url?foo=bar', 'result-link-http-method' => :post}
+    }
     html = klass.new(template, entry).html
     link = Capybara.string(html).find('a.result-link')
-    
-    link['href'].should == "/url?foo=bar&first_name=Art&last_name=Andrews&uid=123"
-    link['class'].should_not match /result-link-default/
-    link['data-remote'].should == 'true'
-    link['data-method'].should == 'post'
+
+    expect(link['href']).to eq("/url?foo=bar&first_name=Art&last_name=Andrews&uid=123")
+    expect(link['class']).to_not match /result-link-default/
+    expect(link['data-remote']).to eq('true')
+    expect(link['data-method']).to eq('post')
   end
-  
+
   it "change label" do
-    template.stub(params: {"result-link-text" => 'Select'})
+    allow(template).to receive(:params) { {"result-link-text" => 'Select'} }
     html = klass.new(template, entry).html
     link = Capybara.string(html).find('a.result-link')
-    
-    link.text.should == 'Select'
+
+    expect(link.text).to eq('Select')
   end
-  
+
   it "additional class" do
-    template.stub(params: {"result-link-class" => 'my-class'})
+    allow(template).to receive(:params) { {"result-link-class" => 'my-class'} }
     html = klass.new(template, entry, class: 'my-class').html
     link = Capybara.string(html).find('a.result-link.my-class')
-    link['class'].should_not match /result-link-default/
+    expect(link['class']).to_not match /result-link-default/
   end
-  
-  it "exists" do
-    template.instance_variable_set("@lps_existing_uids", ["123"])
-    html = klass.new(template, entry, class: 'my-class').html
-    html.should == 'Exists'
-  end
+
 end
