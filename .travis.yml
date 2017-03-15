@@ -13,6 +13,5 @@ script:
   - bundle exec rspec spec --no-drb
 
 notifications:
-  slack:
-    secure: "bPPGTQMwfLuZML83JqNezuBJwAYwXNhmKV1mz7mOtktGkwX6m8WugRXB/e4Rouc+J/JL5yc0iVtVIsnBe/KgTrubtOP5dsK8hpI4GeZqzMt7psnkBDG2/xKHfPvNeAnztrPoCv9sLQNDMoep8G+8hEtn8CQ7aosa8iJLw5rGFhA="
+  slack: infinitered:vEwHyTPtHfTgpT5xdCA2ZkgX
 
