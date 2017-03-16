@@ -78,8 +78,8 @@ class UcbRails::Admin::UsersController < UcbRails::Admin::BaseController
     render json: uta.results(params.fetch(:query))
   end
 
-  def toggle_admin
-    admin? ? current_user.update_column(:admin, false) : current_user.update_column(:admin, true)
+  def toggle_superuser
+    current_user.try(:superuser!, !superuser?)
     redirect_to root_path
   end
 

@@ -1,5 +1,5 @@
 # Various controller methods mixed in to the host app.
-# 
+#
 # Most are also helper methods.
 module UcbRails::ControllerMethods
   extend ActiveSupport::Concern
@@ -11,15 +11,20 @@ module UcbRails::ControllerMethods
 
     before_filter :ensure_authenticated_user
     before_filter :log_request
-    
+
     after_filter  :remove_user_settings
-    
+
     helper_method :admin?, :current_ldap_person, :current_user, :logged_in?
   end
 
   def admin?
+    warn "UcbRails::ControllerMethods::admin? is deprecated - please use superuser?"
     current_user.try(:admin?)
-  end  
+  end
+
+  def superuser?
+    current_user.try(:superuser?)
+  end
 
   def current_user
     @current_user ||= begin
@@ -27,7 +32,7 @@ module UcbRails::ControllerMethods
       user_session_manager.current_user(session[:uid])
     end
   end
-  
+
   # Returns +true+ if there is a logged in user
   #
   # @return [true] if user logged in
@@ -35,16 +40,16 @@ module UcbRails::ControllerMethods
   def logged_in?
     current_user.present?
   end
-  
+
   def log_request
     UcbRails::UserSessionManager::Base.current_user = current_user
     user_session_manager.log_request(current_user)
   end
-  
+
   def remove_user_settings
     UcbRails::UserSessionManager::Base.current_user = nil
   end
-  
+
   # Returns an instance of UCB::LDAP::Person if there is a logged in user
   #
   # @return [UCB::LDAP::Person] if user logged in
@@ -61,7 +66,7 @@ module UcbRails::ControllerMethods
   def ensure_admin_user
     admin? or not_authorized!
   end
-  
+
   # Before filter that redirects redirects to +login_url+ unless user is logged in
   #
   # @return [nil]
@@ -91,5 +96,5 @@ module UcbRails::ControllerMethods
     unless condition
       not_authorized!
     end
-  end   
+  end
 end
