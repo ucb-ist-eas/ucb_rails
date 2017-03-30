@@ -1,25 +1,25 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe UcbRails::UserSessionManager::InPeopleOuAddToUsersTable do
   let(:manager) { UcbRails::UserSessionManager::InPeopleOuAddToUsersTable.new }
-  let(:user) { UcbRails::User.create!(ldap_uid: 1) }
+  let(:user) { User.create!(ldap_uid: 1) }
 
   describe '#login' do
 
     describe 'in People OU' do
       it "in User table" do
         user
-        expect(manager.login("1")).to eq(UcbRails::User.last)
+        expect(manager.login("1")).to eq(User.last)
       end
 
       it 'not in User table' do
-        expect(manager.login("1")).to eq(UcbRails::User.last)
+        expect(manager.login("1")).to eq(User.last)
       end
     end
 
     describe 'not in People OU' do
       it "always false" do
-        UcbRails::User.create!(ldap_uid: 100)
+        User.create!(ldap_uid: 100)
         expect(manager.login("100")).to be_falsey
       end
     end

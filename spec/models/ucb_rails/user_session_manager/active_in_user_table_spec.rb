@@ -1,9 +1,9 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe UcbRails::UserSessionManager::ActiveInUserTable do
   let(:manager) { UcbRails::UserSessionManager::ActiveInUserTable.new }
-  let(:user) { UcbRails::User.create!(ldap_uid: 1) }
-  let(:last_user) { UcbRails::User.last! }
+  let(:user) { User.create!(ldap_uid: 1) }
+  let(:last_user) { User.last! }
 
   describe "login" do
 

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe UcbRails::Configuration::Ldap do
   let(:klass) { UcbRails::Configuration::Ldap }
@@ -21,7 +21,11 @@ describe UcbRails::Configuration::Ldap do
     end
 
     context 'production' do
-      before { allow(RailsEnvironment).to receive(:rails_env) { 'production' } }
+      before {
+        allow(Rails).to receive(:env) {
+          ActiveSupport::StringInquirer.new("production")
+        }
+      }
 
       it "sets production host" do
         klass.configure(config)
@@ -50,7 +54,11 @@ describe UcbRails::Configuration::Ldap do
     end
 
     context 'production' do
-      before { allow(RailsEnvironment).to receive(:rails_env) { 'production' } }
+      before {
+        allow(Rails).to receive(:env) {
+          ActiveSupport::StringInquirer.new("production")
+        }
+      }
 
       it "sets production host" do
         klass.configure(config)

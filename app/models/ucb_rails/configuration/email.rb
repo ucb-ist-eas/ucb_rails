@@ -8,11 +8,11 @@ module UcbRails
       def self.configure(config)
         new(config)
       end
-      
+
       def initialize(configuration_hash)
         return if configuration_hash.nil?
         raise(ArgumentError, "expected a Hash, got: #{configuration_hash.inspect}") unless configuration_hash.is_a?(Hash)
-        
+
         self.hash = configuration_hash
         process_configuration
       end
@@ -64,7 +64,7 @@ module UcbRails
 
       def process_subject_prefix
         prefix = hash.fetch('subject_prefix', '')
-        prefix = prefix.gsub("{env}", RailsEnvironment.short)
+        prefix = prefix.gsub("{env}", Rails.env)
         UcbRails.config.email_subject_prefix = prefix
       end
     end

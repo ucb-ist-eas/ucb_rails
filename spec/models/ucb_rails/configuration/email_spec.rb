@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe UcbRails::Configuration::Email do
   # let(:test_config_file) { UcbRails::Engine.root.join('spec/fixtures/config.yml')}
@@ -91,7 +91,7 @@ describe UcbRails::Configuration::Email do
     it "substitues Rails env" do
       config = {'subject_prefix' => '[MyApp {env}]'}
       klass.new(config)
-      expect(UcbRails[:email_subject_prefix]).to eq('[MyApp TST]')
+      expect(UcbRails[:email_subject_prefix]).to eq('[MyApp test]')
     end
   end
 end

@@ -31,11 +31,11 @@ class UcbRails::UserSessionManager::Base
   private
 
   def active_user
-    @active_user ||= UcbRails::User.active.find_by_ldap_uid(uid)
+    @active_user ||= User.active.find_by_ldap_uid(uid)
   end
 
   def active_admin_user
-    @active_user ||= UcbRails::User.active.superuser.find_by_ldap_uid(uid)
+    @active_user ||= User.active.superuser.find_by_ldap_uid(uid)
   end
 
   def ldap_person_user_wrapper(ldap_person_entry)

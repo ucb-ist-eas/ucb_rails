@@ -15,7 +15,7 @@ module UcbRails
       end
 
       def current_user(uid)
-        UcbRails::User.find_by_ldap_uid(uid)
+        User.find_by_ldap_uid(uid)
       end
 
       private

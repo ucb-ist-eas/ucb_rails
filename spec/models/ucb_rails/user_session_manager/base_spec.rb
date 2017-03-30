@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe UcbRails::UserSessionManager::Base do
   let(:klass) { UcbRails::UserSessionManager::Base }

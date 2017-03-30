@@ -1,3 +1,3 @@
 module UcbRails
-  VERSION = "0.0.17.3"
+  VERSION = "1.9.9"
 end

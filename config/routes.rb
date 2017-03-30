@@ -1,36 +1,16 @@
 Rails.application.routes.draw do
-  root to: 'ucb_rails/home#index'
+  resources :home, only: :index
 
-  match 'ucb_rails', :to => 'ucb_rails/home#index', via: [:get]
+  root to: "home#index"
 
-  match '/login', :to => 'ucb_rails/sessions#new', :as => 'login', via: [:get]
-  match '/logout', :to => 'ucb_rails/sessions#destroy', :as => 'logout', via: [:all]
-  match '/auth/:omniauth_provider/callback' => 'ucb_rails/sessions#create', via: [:get]
-  match '/auth/failure' => "ucb_rails/sessions#failure", via: [:get]
-  match '/not_authorized', :to => 'ucb_rails/sessions#not_authorized', as: 'not_authorized', via: [:get]
+  match "/login", :to => "sessions#new", :as => "login", via: [:get]
+  match "/logout", :to => "sessions#destroy", :as => "logout", via: [:all]
+  match "/auth/:omniauth_provider/callback" => "sessions#create", via: [:get]
+  match "/auth/failure" => "sessions#failure", via: [:get]
+  match "/not_authorized", :to => "sessions#not_authorized", as: "not_authorized", via: [:get]
 
-  match '/ucb_rails/bootstrap(/:uid)' => 'ucb_rails/bootstrap#index', via: [:get]
-
-  resources :hidden_announcements, path: '/announcements', only: [:index, :create, :destroy]
-
-  namespace :ucb_rails do
-    get '/ldap_person_search' => 'ldap_person_search#search', :as => :ldap_person_search
-    get '/person_search' => 'users#search', :as => :person_search
-
-    namespace :admin do
-      resources :announcements
-      get 'configuration' => 'configuration#index'
-      get 'email_test' => 'email_test#index'
-      post 'email_test' => 'email_test#send_email'
-      get 'force_exception' => 'force_exception#index'
-      get 'toggle_superuser' => 'users#toggle_superuser', as: "toggle_superuser"
-
-      resources :users do
-        get 'ldap_search', on: :collection
-        get 'typeahead_search', on: :collection
-        get 'omni_typeahead_search', on: :collection
-      end
-    end
+  namespace :admin do
+    get "toggle_superuser" => "users#toggle_superuser", as: "toggle_superuser"
+    resources :users
   end
-
 end

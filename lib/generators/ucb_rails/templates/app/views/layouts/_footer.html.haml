@@ -1,6 +1,0 @@
-.footer
-  %hr
-  .container
-    %p.text-muted.credit
-      - if Rails.env.development?
-        = [UcbRails[:user_session_manager], session[:omniauth_provider] ].join(', ')

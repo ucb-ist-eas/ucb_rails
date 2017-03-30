@@ -1,8 +1,8 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe UcbRails::UserSessionManager::AdminInUserTable do
   let(:manager) { UcbRails::UserSessionManager::AdminInUserTable.new }
-  let(:user) { UcbRails::User.create!(ldap_uid: 1) }
+  let(:user) { User.create!(ldap_uid: 1) }
 
   describe "login" do
 

@@ -1,9 +1,0 @@
-en:
-  date:
-    formats:
-      slash: '%-m/%-d/%-Y'
-      in_words: '%B %d, %Y'
-  time:
-    formats:
-      slash: '%-m/%-d/%-Y'
-      in_words: '%B %d, %Y'

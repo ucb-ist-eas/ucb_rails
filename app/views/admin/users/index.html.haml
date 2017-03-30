@@ -1,0 +1,22 @@
+%h1 Users
+
+%p= link_to_new_user
+
+= ucbr_table_tag User, data: {url: admin_users_path(format: "json")} do
+  %thead
+    %tr
+      %th.min Superuser?
+      %th.min Inactive?
+      %th First Name
+      %th Last Name
+      %th Email
+      %th Alternate Email
+      %th.dt Last Login At
+      %th UID
+      %th.min Edit
+      %th.min Delete
+  %tbody.highlight
+    = render partial: "admin/users/user", collection: @users
+
+= render :partial => "lps/modal"
+

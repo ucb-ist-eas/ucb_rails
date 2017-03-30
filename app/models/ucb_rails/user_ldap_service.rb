@@ -12,7 +12,7 @@ class UcbRails::UserLdapService
     def create_user_from_ldap_entry(ldap_entry)
       UcbRails.logger.debug "create_user_from_ldap_entry #{ldap_entry.uid}"
 
-      UcbRails::User.create! do |u|
+      User.create! do |u|
         u.ldap_uid = ldap_entry.uid
         u.employee_id = ldap_entry.employee_id
         u.affiliate_id = ldap_entry.affiliate_id
@@ -34,7 +34,7 @@ class UcbRails::UserLdapService
     def update_user_from_ldap_entry(ldap_entry)
       UcbRails.logger.debug "update_user_from_ldap_entry #{ldap_entry.uid}"
 
-      UcbRails::User.find_by_ldap_uid!(ldap_entry.uid).tap do |user|
+      User.find_by_ldap_uid!(ldap_entry.uid).tap do |user|
         user.employee_id = ldap_entry.employee_id if user.respond_to?(:employee_id=)
         user.first_name = ldap_entry.first_name
         user.last_name = ldap_entry.last_name
@@ -44,7 +44,7 @@ class UcbRails::UserLdapService
     end
 
     def create_or_update_user(uid)
-      if user = UcbRails::User.find_by_ldap_uid(uid)
+      if user = User.find_by_ldap_uid(uid)
         update_user_from_uid(uid)
       else
         create_user_from_uid(uid)
@@ -52,7 +52,7 @@ class UcbRails::UserLdapService
     end
 
     def create_or_update_user_from_entry(entry)
-      if user = UcbRails::User.find_by_ldap_uid(entry.uid)
+      if user = User.find_by_ldap_uid(entry.uid)
         update_user_from_ldap_entry(entry)
       else
         create_user_from_ldap_entry(entry)

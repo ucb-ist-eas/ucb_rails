@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 describe UcbRails::Configuration::Configuration do
   let(:test_config_file) { UcbRails::Engine.root.join('spec/fixtures/config.yml')}
@@ -17,7 +17,7 @@ describe UcbRails::Configuration::Configuration do
 
   describe '.for' do
     it "finds top" do
-      allow(RailsEnvironment).to receive(:rails_env) { 'development' }
+      allow(Rails).to receive(:env) { 'development' }
       expect(config.for('foo')).to eq({ 'username' => 'top_username', "password"=>"top_password"})
     end
 
