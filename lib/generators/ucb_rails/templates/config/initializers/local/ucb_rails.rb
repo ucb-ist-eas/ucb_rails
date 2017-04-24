@@ -49,5 +49,6 @@ UcbRails.config do |config|
 
   config.omniauth_provider = :cas        # goes to CalNet
   # config.omniauth_provider = :developer  # Users test ldap entries
-  
+
+  config.allow_user_edit = false  
 end
