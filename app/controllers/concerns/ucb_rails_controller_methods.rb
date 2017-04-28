@@ -56,7 +56,7 @@ module UcbRailsControllerMethods
   end
 
   def ensure_admin_user
-    admin? or not_authorized!
+    superuser? or not_authorized!
   end
 
   # Before filter that redirects redirects to +login_url+ unless user is logged in
