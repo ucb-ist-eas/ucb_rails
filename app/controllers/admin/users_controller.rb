@@ -88,8 +88,8 @@ class Admin::UsersController < Admin::BaseController
 
   def user_params
     params.require(:user).permit(
-      :admin,
-      :inactive,
+      :superuser_flag,
+      :inactive_flag,
       :first_name,
       :last_name,
       :email,
