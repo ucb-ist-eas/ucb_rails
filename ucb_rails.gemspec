@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 4.2"
 
   s.add_dependency "sass-rails", "~> 5.0.6"
-  s.add_dependency "haml"
+  s.add_dependency "haml", "~> 4.0"
   s.add_dependency "haml-rails"
   s.add_dependency "active_attr"
 
