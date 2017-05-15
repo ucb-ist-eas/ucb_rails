@@ -1,5 +1,5 @@
 = simple_form_for(@user, url: url, method: method, :html => {:class => 'form-horizontal'}, wrapper: :horizontal_form) do |f|
-  - is_disabled = UcbRails.config.allow_user_edit ? false : 'disabled'
+  - is_disabled = UcbRails.config.try(:allow_user_edit) ? false : 'disabled'
   = f.input :uid, :input_html => {disabled: 'disabled'}
   = f.input :first_name, :input_html => {disabled: is_disabled}
   = f.input :last_name, :input_html => {disabled: is_disabled}
@@ -15,4 +15,3 @@
   = form_actions do
     = submit_button_tag("Update User")
     = cancel_button_tag(url: ucb_rails_admin_users_path)
-
