@@ -1,0 +1,21 @@
+%h1 Switch User
+
+= form_tag(admin_switch_user_path, id: 'switch-user') do
+  = hidden_field_tag :uid
+  = lps_typeahead_search_field
+
+  %p= submit_button_tag "Switch"
+
+- if @recent_switches.present?
+  %h2 Recent Switches
+  - @recent_switches.each do |user|
+    .row-fluid
+      .span3.well= link_to(user[:name], admin_switch_user_path(uid: user[:uid]), method: 'post', style: 'display: block')
+- if @all_switches.present?
+  %h2 All Switches
+  = ucbr_table_tag do
+    %tbody
+      - @all_switches.each do |switch|
+        %tr[switch]
+          %td= link_to(switch.switchee_name, admin_switch_user_path(uid: switch.switch_uid), method: 'post')
+          %td= switch.created_at.to_s(:default)

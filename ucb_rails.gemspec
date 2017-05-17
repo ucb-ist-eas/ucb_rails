@@ -22,11 +22,13 @@ Gem::Specification.new do |s|
   s.add_dependency "haml", "~> 4.0"
   s.add_dependency "haml-rails"
   s.add_dependency "active_attr"
+  s.add_dependency "simple_form", "~> 3.0"
 
   s.add_dependency "omniauth", "1.1.1"
   s.add_dependency "omniauth-cas", "1.0.0"
 
   s.add_dependency "ucb_ldap"#, "2.0.0.pre5"
+  s.add_dependency "jquery-datatables-rails", "~> 3.0"
 
   # TODO: it would be nice to remove these, but that involves some rewriting
   s.add_dependency "bootstrap-view-helpers", "~> 0.0.14"
@@ -34,5 +36,6 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency "sqlite3"
   s.add_development_dependency "rspec-rails", "~> 3.5"
+  s.add_development_dependency "factory_girl_rails", "~> 4.0"
 
 end

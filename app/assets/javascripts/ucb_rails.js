@@ -1,0 +1,10 @@
+//= require jquery
+//= require jquery_ujs
+//= //require turbolinks
+//= //require nprogress
+//= //require nprogress-turbolinks
+//= require bootstrap
+//= require dataTables/jquery.dataTables
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
+//= require dataTables/jquery.dataTables.api.fnSetFilteringDelay
+//= require_tree .

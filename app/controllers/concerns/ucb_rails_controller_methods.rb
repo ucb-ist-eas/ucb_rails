@@ -18,11 +18,14 @@ module UcbRailsControllerMethods
     current_user.try(:superuser?)
   end
 
-  def current_user
-    @current_user ||= begin
-      logger.debug 'recalc of current_user'
-      user_session_manager.current_user(session[:uid])
+  def current_user(force_recalc=false)
+    if @current_user.nil? || force_recalc
+      @current_user = begin
+        logger.debug 'recalc of current_user'
+        user_session_manager.current_user(session[:uid])
+      end
     end
+    @current_user
   end
 
   # Returns +true+ if there is a logged in user

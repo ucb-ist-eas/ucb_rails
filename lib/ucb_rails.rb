@@ -10,6 +10,7 @@ require "active_attr"
 
 require "bootstrap-view-helpers"
 require "rails_view_helpers"
+require "jquery-datatables-rails"
 
 module UcbRails
 
