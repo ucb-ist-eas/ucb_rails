@@ -3,15 +3,15 @@ module UcbRails
     MissingTypeaheadSearchUrl = Class.new(Exception)
 
     class LpsTypeaheadSearchField < Base
-      
+
       attr_accessor :name, :label, :required, :value, :placeholder, :hint, :result_link_text, :result_link_class, :uid_dom_id, :typeahead_url, :ldap_search_url, :ldap_modal_search
-      attr_accessor :first_last_name_column
-      
+      attr_accessor :first_last_name_column, :limit
+
       def initialize(template, options={})
         super
         parse_options
       end
-      
+
       def html
         content_tag(:div, class: 'control-group lps-typeahead') do
           label_html +
@@ -21,21 +21,21 @@ module UcbRails
           end
         end
       end
-      
+
       private
-      
+
       def label_html
         return "".html_safe unless label
         required_marker = required ? content_tag(:abbr, '*', title: 'required') + ' ' : ''
         label_classes = 'control-label'
         label_classes << ' required' if required
-        
+
         label_tag(name, class: label_classes) do
           required_marker +
           label
         end
       end
-      
+
       def inputs
         if ldap_modal_search
           input_append_div
@@ -49,7 +49,7 @@ module UcbRails
           content_tag(:p, hint, class: 'help-block')
         end
       end
-      
+
       def input_append_div
         content_tag(:div, class: 'input-append') do
           text_field_html + span_html
@@ -57,7 +57,6 @@ module UcbRails
       end
 
       def text_field_html
-
         text_field_tag(name, value, {
           autocomplete: 'off',
           class: 'typeahead-lps-search typeahead form-control',
@@ -66,13 +65,14 @@ module UcbRails
           id: "person_search_"+text_field_data_attributes[:uid_dom_id].to_s
         })
       end
-      
+
       def text_field_data_attributes
         data_attributes = {
           uid_dom_id: uid_dom_id,
           typeahead_url: self.typeahead_url,
           ldap_search_url: self.ldap_search_url,
-          first_last_name_column: self.first_last_name_column
+          first_last_name_column: self.first_last_name_column,
+          limit: self.limit
         }
         return data_attributes
       end
@@ -91,9 +91,10 @@ module UcbRails
           icon('search')
         end
       end
-      
+
       def parse_options
         self.name = options.delete(:name) || 'person_search'
+        self.limit = options.delete(:limit) || 10
         self.label = options.delete(:label)
         self.required = options.delete(:required)
         self.value = options.delete(:value) || params[name]
@@ -108,15 +109,15 @@ module UcbRails
         self.first_last_name_column = options.delete(:first_last_name_column) || :first_last_name
         validate_options
       end
-      
+
       def validate_options
         return if options.blank?
-        
+
         msg = "Unknown lps_typeahead_search_field option(s): #{options.keys.map(&:inspect).join(', ')}. "
         msg << "Did you mean one of :name, :required, :label, :value, :placeholder, :hint, :ldap_modal_search, :ldap_search_url, :result_link_text, :result_link_class, :uid_dom_id, :typeahead_url"
         raise ArgumentError, msg
       end
-      
+
     end
   end
 end
