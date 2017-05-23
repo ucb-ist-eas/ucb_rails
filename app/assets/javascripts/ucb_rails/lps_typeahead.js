@@ -3,19 +3,19 @@ $(function() {
 
   // prevent browser autocomplete from competing with Bootstrap typeahead
   $('.typeahead-lps-search').attr('autocomplete', 'off');
-  
+
   // typing in search field clears uid field
   $('.typeahead-lps-search').keyup(function(evt) {
     if(evt.which != 13 && evt.which != 9) {
       var uidSelector = '#' + $(this).data('uid-dom-id');
-      $(uidSelector).val('');      
+      $(uidSelector).val('');
     }
   });
 
   $('.typeahead-lps-search').keydown(function(evt) {
     if(evt.which == 13) {
       evt.preventDefault();
-    } 
+    }
   });
 
   // default handler for ldap search result link when used with typeahead
@@ -29,19 +29,21 @@ $(function() {
     e.preventDefault();
     hideLpsModal();
   });
-  
+
   function loadTypeahead(uid_name_json, asyncResults) {
     var names = [];
-    var map = {};          
+    var map = {};
     $.each(uid_name_json, function (i, person) {
       map[person.first_last_name] = person;
       names.push(person.first_last_name);
     });
 
     asyncResults(names);
-  } 
+  }
 
-  typeaheadCtrl = $('.typeahead-lps-search').typeahead({
+  var $typeaheadElement = $(".typeahead-lps-search");
+
+  typeaheadCtrl = $typeaheadElement.typeahead({
     minLength: 2,
     delay: 250,
     highlight: true,
@@ -49,11 +51,12 @@ $(function() {
   },
   {
     display: 'first_last_name',
+    limit: $typeaheadElement.data('limit'),
     source: function(query, syncResults, asyncResults) {
-      var $typeaheadElement = this.$el.parents(".twitter-typeahead").find(".typeahead-lps-search");
       var url = $typeaheadElement.data('typeaheadUrl');
       var first_last_name_column = $typeaheadElement.data('firstLastNameColumn');
-      
+      var limit = $typeaheadElement.data('limit') || 10
+
       if(!url)
         return;
 
@@ -62,7 +65,7 @@ $(function() {
         queryTokenizer: Bloodhound.tokenizers.whitespace,
         identify: function(obj) { return obj.uid; },
         remote: {
-          url: url+"?query=%QUERY&first_last_name_column="+first_last_name_column,
+          url: url+"?query=%QUERY&first_last_name_column="+first_last_name_column+'&limit='+limit,
           wildcard: '%QUERY'
         }
       });
@@ -79,13 +82,13 @@ $(function() {
       var ldapSrc = new Bloodhound({
         datumTokenizer: Bloodhound.tokenizers.whitespace,
         queryTokenizer: Bloodhound.tokenizers.whitespace,
-        identify: function(obj) { return obj.uid; },      
+        identify: function(obj) { return obj.uid; },
         remote: {
           url: url+"?query=%QUERY",
           wildcard: '%QUERY'
         }
       });
-      ldapSrc.search(query, syncResults, asyncResults);      
+      ldapSrc.search(query, syncResults, asyncResults);
     }
   })
   .on('typeahead:asyncrequest', function(){
@@ -98,7 +101,5 @@ $(function() {
     $("#"+$(evt.target).data('uid-dom-id')).val(suggestion.uid);
   }).on('typeahead:autocomplete', function(evt, suggestion) {
     console.log('autocomplete')
-  })  
-
-
+  })
 })

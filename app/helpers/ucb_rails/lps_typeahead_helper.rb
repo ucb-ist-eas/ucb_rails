@@ -3,6 +3,7 @@
 module UcbRails::LpsTypeaheadHelper
 
   # @option options [Symbol] :name (:person_search) the name of the <input> field
+  # @option options [FixNum] :limit (10) the number of results
   # @option options [String] :label ('User') the text of the field label
   # @option options [Boolean] :required (false) is the field required
   # @option options [String] :value (params[:name]) the value of the field
@@ -17,5 +18,5 @@ module UcbRails::LpsTypeaheadHelper
   def lps_typeahead_search_field(options={})
     UcbRails::Renderer::LpsTypeaheadSearchField.new(self, options).html
   end
-  
+
 end
