@@ -55,7 +55,7 @@ $(function() {
     source: function(query, syncResults, asyncResults) {
       var url = $typeaheadElement.data('typeaheadUrl');
       var first_last_name_column = $typeaheadElement.data('firstLastNameColumn');
-      var limit = $typeaheadElement.data('limit')
+      var limit = $typeaheadElement.data('limit') || 10
 
       if(!url)
         return;
