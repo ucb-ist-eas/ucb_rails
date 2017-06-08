@@ -7,6 +7,10 @@ dummy/db/*.sqlite3
 dummy/log/*.log
 dummy/tmp/
 dummy/.sass-cache
+spec/dummy/db/*.sqlite3
+spec/dummy/log/*.log
+spec/dummy/tmp/
+spec/dummy/.sass-cache
 *.tmproj
 tmp/*
 .yardoc
