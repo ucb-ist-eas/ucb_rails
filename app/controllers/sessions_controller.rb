@@ -55,7 +55,7 @@ class SessionsController < ApplicationController
 
   def redirect_url(provider)
     if provider.to_s == 'cas'
-      "https://#{UcbRails[:cas_host]}/cas/logout?url=#{root_url}"
+      "https://#{UcbRails[:cas_host]}/cas/logout?service=#{root_url}"
     else
       root_path
     end
