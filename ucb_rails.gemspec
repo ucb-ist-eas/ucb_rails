@@ -23,8 +23,8 @@ Gem::Specification.new do |s|
   s.add_dependency "haml-rails"
   s.add_dependency "active_attr"
 
-  s.add_dependency "omniauth", "1.1.1"
-  s.add_dependency "omniauth-cas", "1.0.0"
+  s.add_dependency "omniauth"
+  s.add_dependency "omniauth-cas"
 
   s.add_dependency "ucb_ldap"#, "2.0.0.pre5"
 
