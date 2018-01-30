@@ -17,9 +17,9 @@ Gem::Specification.new do |s|
 
   s.add_dependency "rails", "~> 4.2"
   s.add_dependency "jquery-rails"
-  
+
   # Enable this gems when pushed to ruby gems
-  s.add_dependency 'ucb_ldap', '2.0.0.pre6'
+  s.add_dependency 'ucb_ldap', '2.0.0.pre8'
   s.add_dependency 'ucb_rails_ci', '~> 1.0.1'
 
   # s.add_dependency 'turbolinks'
@@ -40,10 +40,10 @@ Gem::Specification.new do |s|
   s.add_dependency 'sweet-alert-confirm', '~> 0.4.1'
   s.add_dependency 'gon', '~> 6.0.0'
 
-  s.add_dependency 'responders', '~> 2.0'  
+  s.add_dependency 'responders', '~> 2.0'
 
   s.add_dependency 'rails_environment', '~> 0.0.3'
- 
+
   s.add_dependency 'rails_view_helpers', '~> 0.0.4'
   s.add_dependency 'user_announcements', '~> 0.0.9'
   s.add_dependency 'bootstrap-view-helpers', '~> 0.0.14'
@@ -54,11 +54,11 @@ Gem::Specification.new do |s|
   s.add_development_dependency "guard-rspec"
   s.add_development_dependency "guard-spork"
   s.add_development_dependency 'coveralls'
-  s.add_development_dependency 'shoulda-matchers'  
+  s.add_development_dependency 'shoulda-matchers'
   s.add_development_dependency 'database_cleaner'
-  
+
   s.add_development_dependency "sqlite3"
-  
+
   if ENV['ENGINE_DEVELOPER'] == 'true'
     s.add_development_dependency 'launchy'
     s.add_development_dependency 'better_errors'
@@ -68,5 +68,5 @@ Gem::Specification.new do |s|
     s.add_development_dependency 'quiet_assets'
     s.add_development_dependency 'thin'
   end
-  
+
 end
