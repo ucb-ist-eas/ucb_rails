@@ -39,14 +39,13 @@ module UcbRails::LdapPerson
     class << self
 
       def new_from_ldap_entry(ldap_entry)
-        p ldap_entry.expired?
         new(
           :uid => ldap_entry.uid,
           :calnet_id => ldap_entry.berkeleyedukerberosprincipalstring.first,
           :employee_id => ldap_entry.employeenumber,
           :first_name => ldap_entry.givenname.first,
           :last_name => ldap_entry.sn.first,
-          :email => ldap_entry.mail.first,
+          :email => ldap_entry.mail.first || ldap_entry.officialemail.first,
           :phone => ldap_entry.phone,
           :departments => ldap_entry.berkeleyeduunithrdeptname,
           :affiliations => ldap_entry.berkeleyeduaffiliations,
