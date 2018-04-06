@@ -19,7 +19,6 @@ class UcbRails::UserLdapService
         u.last_name = ldap_entry.last_name
         u.email = ldap_entry.email
         u.phone = ldap_entry.phone
-        u.inactive = ldap_entry.inactive
       end
     end
 
