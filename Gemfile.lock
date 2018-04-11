@@ -1,14 +1,14 @@
 GIT
   remote: git@github.com:ucb-ist-eas/ucb-ldap.git
-  revision: 26d7e5583f4b11e13afd3639e604bdcaef5a8040
+  revision: 953248562f1ebfd1bffb71c016f0286f98665337
   specs:
-    ucb_ldap (2.0.0.pre6)
+    ucb_ldap (2.0.0.pre8)
       net-ldap (= 0.2.2)
 
 PATH
   remote: .
   specs:
-    ucb_rails (0.0.14)
+    ucb_rails (0.0.14.1)
       active_attr
       bootstrap-datepicker-rails
       bootstrap-sass (~> 2.3)
@@ -25,7 +25,7 @@ PATH
       rails_view_helpers (~> 0.0.3)
       sass-rails (~> 3.2)
       simple_form (~> 2.1.0)
-      ucb_ldap (= 2.0.0.pre6)
+      ucb_ldap (= 2.0.0.pre8)
       user_announcements (~> 0.0.8)
 
 GEM
@@ -44,9 +44,9 @@ GEM
       rack-cache (~> 1.2)
       rack-test (~> 0.6.1)
       sprockets (~> 2.2.1)
-    active_attr (0.8.4)
-      activemodel (>= 3.0.2, < 4.2)
-      activesupport (>= 3.0.2, < 4.2)
+    active_attr (0.10.3)
+      activemodel (>= 3.0.2, < 6.0)
+      activesupport (>= 3.0.2, < 6.0)
     activemodel (3.2.13)
       activesupport (= 3.2.13)
       builder (~> 3.0.0)
@@ -61,9 +61,10 @@ GEM
     activesupport (3.2.13)
       i18n (= 0.6.1)
       multi_json (~> 1.0)
-    addressable (2.3.6)
+    addressable (2.5.2)
+      public_suffix (>= 2.0.2, < 4.0)
     arel (3.0.3)
-    bootstrap-datepicker-rails (1.3.0.2)
+    bootstrap-datepicker-rails (1.8.0.1)
       railties (>= 3.0)
     bootstrap-sass (2.3.2.2)
       sass (~> 3.2)
@@ -111,7 +112,7 @@ GEM
       childprocess (>= 0.2.3)
       guard (>= 1.1)
       spork (>= 0.8.4)
-    haml (4.0.5)
+    haml (4.0.7)
       tilt
     haml-rails (0.4)
       actionpack (>= 3.1, < 4.1)
@@ -128,7 +129,7 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.0)
-    kaminari (0.16.1)
+    kaminari (0.17.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
     listen (1.1.3)
@@ -136,7 +137,7 @@ GEM
       rb-inotify (>= 0.9)
       rb-kqueue (>= 0.2)
     lumberjack (1.0.3)
-    mail (2.5.4)
+    mail (2.5.5)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     method_source (0.8.1)
@@ -158,6 +159,7 @@ GEM
       coderay (~> 1.0.5)
       method_source (~> 0.8)
       slop (~> 3.4)
+    public_suffix (2.0.5)
     rack (1.4.5)
     rack-cache (1.2)
       rack (>= 0.4)
@@ -209,14 +211,14 @@ GEM
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
       rspec-mocks (~> 2.13.0)
-    sass (3.4.5)
+    sass (3.4.25)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
     shoulda-matchers (2.1.0)
       activesupport (>= 3.0.0)
-    simple_form (2.1.1)
+    simple_form (2.1.3)
       actionpack (~> 3.0)
       activemodel (~> 3.0)
     simplecov (0.7.1)
@@ -236,8 +238,8 @@ GEM
     treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (0.3.41)
-    user_announcements (0.0.8)
+    tzinfo (0.3.54)
+    user_announcements (0.0.9)
       jquery-rails
       rails
     xpath (2.0.0)
@@ -259,3 +261,6 @@ DEPENDENCIES
   sqlite3
   ucb_ldap!
   ucb_rails!
+
+BUNDLED WITH
+   1.16.1

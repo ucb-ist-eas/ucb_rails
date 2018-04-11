@@ -17,7 +17,7 @@ Gem::Specification.new do |s|
   s.add_dependency "rails", "~> 3.1"
   s.add_dependency "jquery-rails"
   
-  s.add_dependency 'ucb_ldap', '2.0.0.pre6'
+  s.add_dependency 'ucb_ldap', '2.0.0.pre8'
   s.add_dependency "exception_notification", "~> 4.0.0.rc1"
   s.add_dependency "omniauth", '1.1.1'
   s.add_dependency "omniauth-cas", '1.0.0'
