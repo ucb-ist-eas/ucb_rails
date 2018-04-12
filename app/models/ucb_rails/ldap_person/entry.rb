@@ -45,7 +45,7 @@ module UcbRails::LdapPerson
           :employee_id => ldap_entry.employeenumber,
           :first_name => ldap_entry.givenname.first,
           :last_name => ldap_entry.sn.first,
-          :email => ldap_entry.mail.first || (ldap_entry.respond_to?(:officialemail) ? ldap_entry.officialemail.first : ""),
+          :email => ldap_entry.respond_to?(:mail) ? ldap_entry.mail.first : (ldap_entry.respond_to?(:officialemail) ? ldap_entry.officialemail.first : ""),
           :phone => ldap_entry.phone,
           :departments => ldap_entry.berkeleyeduunithrdeptname,
           :affiliations => ldap_entry.berkeleyeduaffiliations,
