@@ -5,7 +5,7 @@ source "http://rubygems.org"
 # development dependencies will be added by default to the :development group.
 gemspec
 
-gem 'ucb_ldap', github: 'ucb-ist-eas/ucb-ldap'
+gem 'ucb_ldap', '~> 2.0'
 gem 'ucb_rails_ci', github: 'ucb-ist-eas/ucb_rails_ci'
 
 # jquery-rails is used by the dummy application
