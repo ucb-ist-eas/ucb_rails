@@ -24,25 +24,25 @@ Gem::Specification.new do |s|
 
   # s.add_dependency 'turbolinks'
   # s.add_dependency 'nprogress-rails', '~> 0.1.6.7'
-  s.add_dependency "exception_notification", "~> 4.0.0.rc1"
-  s.add_dependency "omniauth", '1.1.1'
-  s.add_dependency "omniauth-cas", '1.0.0'
+  s.add_dependency "exception_notification"
+  s.add_dependency "omniauth"
+  s.add_dependency "omniauth-cas"
   s.add_dependency "haml-rails"
-  s.add_dependency 'bootstrap-sass', '~> 3.3.6'
-  s.add_dependency 'sass-rails', '~> 5.0.4'
+  s.add_dependency 'bootstrap-sass'
+  s.add_dependency 'sass-rails'
   s.add_dependency 'active_attr'
-  s.add_dependency 'simple_form', '~> 3.2.0'
-  s.add_dependency "jquery-datatables-rails", '~> 3.3.0'
+  s.add_dependency 'simple_form'
+  s.add_dependency "jquery-datatables-rails"
   s.add_dependency 'kaminari'
-  s.add_dependency 'momentjs-rails', '>= 2.9.0'
-  s.add_dependency 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
-  s.add_dependency 'sweetalert-rails', '~> 0.5.0'
-  s.add_dependency 'sweet-alert-confirm', '~> 0.4.1'
-  s.add_dependency 'gon', '~> 6.0.0'
+  s.add_dependency 'momentjs-rails'
+  s.add_dependency 'bootstrap3-datetimepicker-rails'
+  s.add_dependency 'sweetalert-rails'
+  s.add_dependency 'sweet-alert-confirm'
+  s.add_dependency 'gon'
 
-  s.add_dependency 'responders', '~> 2.0'
+  s.add_dependency 'responders'
 
-  s.add_dependency 'rails_environment', '~> 0.0.3'
+  s.add_dependency 'rails_environment'
 
   s.add_dependency 'rails_view_helpers', '~> 0.0.4'
   s.add_dependency 'user_announcements', '~> 0.0.9'
