@@ -15,7 +15,7 @@ Gem::Specification.new do |s|
 
   s.files = `git ls-files`.split("\n")
 
-  s.add_dependency "rails", "~> 4.2"
+  s.add_dependency "rails"
   s.add_dependency "jquery-rails"
 
   # Enable this gems when pushed to ruby gems
