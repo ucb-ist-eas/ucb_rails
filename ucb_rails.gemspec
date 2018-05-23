@@ -44,9 +44,9 @@ Gem::Specification.new do |s|
 
   s.add_dependency 'rails_environment'
 
-  s.add_dependency 'rails_view_helpers', '~> 0.0.4'
-  s.add_dependency 'user_announcements', '~> 0.0.9'
-  s.add_dependency 'bootstrap-view-helpers', '~> 0.0.14'
+  s.add_dependency 'rails_view_helpers'
+  s.add_dependency 'user_announcements'
+  s.add_dependency 'bootstrap-view-helpers'
 
   s.add_development_dependency "rspec-rails"
   s.add_development_dependency "capybara"
