@@ -19,7 +19,7 @@ Gem::Specification.new do |s|
   s.add_dependency "jquery-rails"
 
   # Enable this gems when pushed to ruby gems
-  s.add_dependency 'ucb_ldap', '2.0.0.pre8'
+  s.add_dependency 'ucb_ldap', '3.0.0'
 
   # s.add_dependency 'turbolinks'
   # s.add_dependency 'nprogress-rails', '~> 0.1.6.7'
