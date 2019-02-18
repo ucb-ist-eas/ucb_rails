@@ -21,7 +21,7 @@ Gem::Specification.new do |s|
   # current: 4.3.3 @ 2018-05-24 👍
 
   # Enable this gems when pushed to ruby gems
-  s.add_dependency 'ucb_ldap', '3.0.0'
+  s.add_dependency 'ucb_ldap', '>= 3.1.1'
   # https://github.com/ucb-ist-eas/ucb-ldap
   # current: 3.0.0 @ 2018-05-24 👍
 
@@ -39,10 +39,10 @@ Gem::Specification.new do |s|
   # current: 1.1.1 @ 2018-05-24 👎
   s.add_dependency "haml-rails"
   # https://github.com/indirect/haml-rails
-  # current: 1.0.0 @ 2018-05-24 👍 
+  # current: 1.0.0 @ 2018-05-24 👍
   s.add_dependency 'bootstrap-sass', '~> 3.3.6'
   # https://github.com/twbs/bootstrap-sass
-  # current: 3.3.7 @ 2018-05-24 👍 
+  # current: 3.3.7 @ 2018-05-24 👍
   s.add_dependency 'sass-rails', '~> 5.0.4'
   # https://github.com/rails/sass-rails
   # current: 5.0.7 @ 2018-05-24 👍
