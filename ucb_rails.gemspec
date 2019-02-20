@@ -31,7 +31,7 @@ Gem::Specification.new do |s|
   s.add_dependency "exception_notification", "~> 4.0.0.rc1"
   # https://github.com/smartinez87/exception_notification
   # current: 4.2.2 @ 2018-05-24 👎
-  s.add_dependency "omniauth", '1.1.1'
+  s.add_dependency 'omniauth', '~> 1.1'
   # https://github.com/omniauth/omniauth
   # current: 1.8.1 @ 2018-05-24 👎
   s.add_dependency "omniauth-cas", '1.0.0'
