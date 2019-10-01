@@ -66,10 +66,10 @@ Gem::Specification.new do |s|
   s.add_dependency 'bootstrap3-datetimepicker-rails', '~> 4.17.37'
   # https://github.com/TrevorS/bootstrap3-datetimepicker-rails
   # current: 4.17.47 @ 2018-05-24 👍
-  s.add_dependency 'sweetalert-rails', '~> 0.5.0'
+  # s.add_dependency 'sweetalert-rails', '~> 0.5.0'
   # https://github.com/sharshenov/sweetalert-rails
   # current: 1.1.3 @ 2018-05-24 👎
-  s.add_dependency 'sweet-alert-confirm', '~> 0.4.1'
+  # s.add_dependency 'sweet-alert-confirm', '~> 0.4.1'
   # https://rubygems.org/gems/sweet-alert-confirm/ → https://github.com/mois3x/sweet-alert-rails-confirm
   # current: 0.4.1 @ 2018-05-24 👍
   # https://github.com/sweetalert2/sweetalert2/wiki/Migration-from-SweetAlert-to-SweetAlert2

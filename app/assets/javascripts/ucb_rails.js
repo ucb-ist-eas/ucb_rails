@@ -9,6 +9,6 @@
 //= require dataTables/jquery.dataTables.api.fnSetFilteringDelay
 //= require moment
 //= require bootstrap-datetimepicker
-//= require sweet-alert
-//= require sweet-alert-confirm
+//= //require sweet-alert
+//= //require sweet-alert-confirm
 //= require_tree .
